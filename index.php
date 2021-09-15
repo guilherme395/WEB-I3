@@ -1,39 +1,43 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Desafio I3</title>
 
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Desafio I3</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
+    <style>
+      .card-login {
+        padding: 30px 0 0 0;
+        width: 350px;
+        margin: 0 auto;
+      }
+    </style>
   </head>
+
   <body>
+    <div class="container">    
+      <div class="row">
 
-        <div class="container">
-
-            <form action="valida_login.php"  method="POST" > 
-
+        <div class="card-login">
+          <div class="card">
+            <div class="card-header">
+              Login
+            </div>
+            <div class="card-body">
+              <form  action="login.php"  method="POST" >
                 <div class="form-group">
-                    <div class="   col-md-6">
-                        <label >e-mail</label>
-                        <input name="email" type="text" name="login" class="form-control " placeholder=" Digite seu e-mail" required="" >    
-                    </div>
+                  <input  name="usuario" type="email" class="form-control" placeholder="E-mail">
                 </div>
-
                 <div class="form-group">
-                    <div class="col-md-6">
-                        <label> Senha </label>  
-                        <input name="senha" type="password" name="rg" class="form-control" placeholder="Digite sua senha " required="" >
-                    </div>
-                </div>     
 
-                <input type="submit" value="Login" class="btn" name="">
-
-            </form> 
+                  <input name="senha" type="password" class="form-control" placeholder="Senha">
+                </div>
+                <button class="btn btn-lg btn-info btn-block" type="submit">Entrar</button>
+                <a style="margin-left: 75px;" href="">Cadastrar novo usuario </a>
+              </form>
+            </div>
+          </div>
         </div>
+    </div>
   </body>
 </html>
