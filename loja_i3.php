@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -16,16 +17,16 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 
 <!-- Logo -->
-<a href="index2.php" class="navbar-brand">Loja Virtual I3</a>
+<a href="loja_i3.php" class="navbar-brand">Loja Virtual I3</a>
 
 <!-- navegacao -->
 <div class="collapse navbar-collapse" id="navegacao">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="index2.php" class="nav-link ">Home</a>
+            <a href="loja_i3.php" class="nav-link ">Home</a>
         </li>
         <li class="nav-item lat" >
-            <a href="" class="nav-link">Sobre nós</a>
+            <a href="cadastro_produto.php" class="nav-link">Cadastrar novo produto</a>
         </li>
         <li class="nav-item">
             <a href="index.php" class="nav-link">Sair</a>
