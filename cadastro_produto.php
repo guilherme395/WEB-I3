@@ -1,9 +1,13 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Cadastro de produto</title>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Cadastro de produto</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
       .card-login {
@@ -12,8 +16,8 @@
         margin: 0 auto;
       }
     </style>
-  </head>
 
+  </head>
   <body>
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -46,26 +50,15 @@
               Cadastrar novo produto
             </div>
             <div class="card-body">
-              <form  action=""  method="POST" >
-
+              <form  action="pega_cadastro.php"  method="POST" >
                 <div class="form-group">
-                  <input  name="descricao" type="text" class="form-control" placeholder="Nome do produto">
+                  <input  name="produto" type="text" class="form-control" placeholder="Nome do produto">
                 </div>
-
                 <div class="form-group">
-                  <input  name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
+
+                  <input name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
                 </div>
-
-                <div class="form-group">
-                  <input name="quantidade" type="text" class="form-control" placeholder="quantidade">
-                </div>
-
-                <div class="form-group">
-                  <input name="preco" type="text" class="form-control" placeholder="preço">
-                </div>
-
-                <button class="btn btn-lg btn-info btn-block" type="submit">Cadastrar</button>
-
+                <button name="submit" id="submit" class="btn btn-lg btn-info btn-block" type="submit">Cadastrar</button>
               </form>
             </div>
           </div>

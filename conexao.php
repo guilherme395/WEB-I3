@@ -5,6 +5,6 @@ $USUARIO = 'root';
 $SENHA = 'root';
 $DB = 'login';
 
-$conexao = mysqli_connect($HOST,$USUARIO,$SENHA,$DB) or die ('Não foi possivel conectar');
+$conexao = mysqli_connect($HOST,$USUARIO,$SENHA,$DB);
 
 ?>
