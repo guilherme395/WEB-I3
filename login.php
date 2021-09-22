@@ -8,7 +8,7 @@ if (empty($_POST['usuario']) || empty($_POST['senha'])) {
     exit(s);
 }
 
-//Atribui o valor passado via POST a variaveis.
+// Atribui o valor passado via POST a variaveis 
 $usuario = mysqli_real_escape_string($conexao , $_POST['usuario']);
 $senha = mysqli_real_escape_string($conexao , $_POST['senha']);
 
@@ -21,7 +21,7 @@ $result = mysqli_query($conexao, $query);
 //Atribui a variavel $row a quantidade de linha retornada pela variavel $result.
 $row = mysqli_num_rows($result);
 
-//se o valor retornado pelo banco for == 1 o usuario e autenticado e redirecionado para a Loja virtual , caso contrario ele e redirecionado para a index de login.
+//se o valor retornado pelo banco for == 1 devido a quantidade de linhas afetadas, o usuario e autenticado e redirecionado para a Loja virtual , caso contrario ele e redirecionado para a index de login.
 if($row == 1) {
     header('Location: loja_i3.php');
     exit();

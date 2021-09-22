@@ -50,12 +50,11 @@
               Cadastrar novo produto
             </div>
             <div class="card-body">
-              <form  action="pega_cadastro.php"  method="POST" >
+              <form  action="pega_cadastro.php"  method="post" >
                 <div class="form-group">
                   <input  name="produto" type="text" class="form-control" placeholder="Nome do produto">
                 </div>
                 <div class="form-group">
-
                   <input name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
                 </div>
                 <button name="submit" id="submit" class="btn btn-lg btn-info btn-block" type="submit">Cadastrar</button>
@@ -66,3 +65,5 @@
     </div>
   </body>
 </html>
+
+

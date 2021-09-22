@@ -1,4 +1,6 @@
-
+<?php
+include "conexao.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -42,30 +44,29 @@
         
         <div class="marcador col-md-6 col-xl-4" style="border: 1px solid #c1c1c1; border-radius: 20px;" >
 
-        <h2>ICOMERCIO</h2>
-        <img src="imgs/comercio.png">
-        <p>Solução completa para a gestão do seu negócio! Mais controle interno, gestão financeira e organização contábil em um só sistema!</p>
-        
+        <h2></h2>
+        <img src="">
+        <p> </p>
 
-        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS</button>
+        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS...</button>
 
         </div>
 
         <div class="marcador col-md-6 col-xl-4 " style="border: 1px solid #c1c1c1; border-radius: 20px;">
 
-        <h2>ICOMERCIO LITE</h2>
-        <img src="imgs/comercio-lite.png">
-        <p>A solução perfeita para pequenos negócios! Emissão de documentos fiscais, integração contábil. Conheça a versão Lite!</p>
-        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS</button>
+        <h2></h2>
+        <img src="">
+        <p></p>
+        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS...</button>
 
         </div>
 
         <div class="marcador col-md-6 col-xl-4" style="border: 1px solid #c1c1c1; border-radius: 20px; padding-bottom: 10px;">
 
-        <h2>ICHEF COMANDAS</h2>
-        <img src="imgs/cheff-comandas.png">
-        <p>Otimize gestão e atendimento de bares e restaurantes com uma solução sob medida. Sistema de comanda eletrônica e muito mais!</p>
-        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS</button>
+        <h2></h2>
+        <img src="">
+        <p></p>
+        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS...</button>
           
         </div>
 
