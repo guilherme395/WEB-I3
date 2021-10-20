@@ -1,6 +1,6 @@
 <?php
 
-$HOST = '127.0.0.1';
+$HOST = 'localhost';
 $USUARIO = 'root';
 $SENHA = 'root';
 $DB = 'login';

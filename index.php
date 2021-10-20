@@ -2,10 +2,10 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/1ab94d0eba.js" crossorigin="anonymous"></script>
-    <title>Login Form</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <title>Login | Loja Virtual I3</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body  style="background: #c1c1c1;">
     <main class="container">

@@ -9,6 +9,11 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <link rel="stylesheet" type="text/css" href="cdt.css">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
     <style>
       .card-login {
         padding: 30px 0 0 0;
@@ -56,6 +61,17 @@
                 </div>
                 <div class="form-group">
                   <input name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
+                </div>
+                <div class="form-group">
+                  <input type="file" id="file"  accept="image/*" class="form-control" >
+                  <label for="file">
+                  <span  class="material-icons">
+                  add_photo_alternate
+                  </span>              
+                  <span style="width: 10px;">
+                   Selecione uma imagem
+                  </span>
+                  </label>
                 </div>
                 <button name="submit" id="submit" class="btn btn-lg btn-info btn-block" type="submit">Cadastrar</button>
               </form>
