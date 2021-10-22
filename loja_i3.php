@@ -66,7 +66,7 @@ include "conexao.php";
         <h2>ICHEF COMANDAS</h2>
         <img src="imgs/cheff-comandas.png">
         <p>Otimize gestão e atendimento de bares e restaurantes com uma solução sob medida. Sistema de comanda eletrônica e muito mais!</p>
-        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS...</button>
+        <button class="btn btn-sucesses">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS...</button>
           
         </div>
 
