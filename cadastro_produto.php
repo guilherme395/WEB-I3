@@ -1,3 +1,11 @@
+<?php
+
+header('Content-Type: text/html; charset=UTF-8');
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -55,26 +63,36 @@
               Cadastrar novo produto
             </div>
             <div class="card-body">
-              <form  action="pega_cadastro.php"  method="post" >
-                <div class="form-group">
-                  <input  name="produto" type="text" class="form-control" placeholder="Nome do produto">
-                </div>
-                <div class="form-group">
-                  <input name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
-                </div>
-                <div class="form-group">
-                  <input type="file" id="file"  accept="image/*" class="form-control" >
-                  <label for="file">
-                  <span  class="material-icons">
-                  add_photo_alternate
-                  </span>              
-                  <span style="width: 10px;">
-                   Selecione uma imagem
-                  </span>
-                  </label>
-                </div>
-                <button name="submit" id="submit" class="btn btn-lg btn-info btn-block" type="submit">Cadastrar</button>
-              </form>
+                <form  action="pega_cadastro.php"  method="post" enctype="multipart/form-data">
+
+                  <div class="form-group">
+                    <input  name="produto" type="text" class="form-control" placeholder="Nome do produto">
+                  </div>
+
+                  <div class="form-group">
+                    <input name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
+                  </div>
+                  
+                  <div >
+                    
+                    <div class="form-group" style="border: 1px solid #c1c1c1;">
+
+                    <input type="file" required name="arquivo"  class="form-control" >
+                    <label for="file">                     
+                    <span  class="material-icons">
+                    add_photo_alternate
+                    </span>              
+                    <span>
+                    Selecione uma imagem
+                    </span>
+                    </label>
+                    </div>
+
+                  </div>
+
+                  <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Cadastrar</button>
+                </form>
+
             </div>
           </div>
         </div>

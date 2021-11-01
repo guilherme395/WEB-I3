@@ -1,5 +1,13 @@
 <?php
-include "conexao.php";
+
+include_once "conexao.php";
+
+$prdt = array();
+
+$sql = "SELECT * FROM tb_produto ORDER BY id DESC";
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,43 +45,40 @@ include "conexao.php";
     </div>
 </nav>
 
+<?php
 
-<div class="container" style="padding-top: 40px;">
-      
-      <div class="row">
-        
-        <div class="marcador col-md-6 col-xl-4" style="border: 1px solid #c1c1c1; border-radius: 20px;" >
+if($res = mysqli_query($conexao, $sql)) {
+    $produto = array();
+    $descricao = array();
+    $i = 0;
 
-        <h2>ICOMERCIO</h2>
-	    <img src="imgs/comercio.png">
-	    <p>Solução completa para a gestão do seu negócio! Mais controle interno, gestão financeira e organização contábil em um só sistema!</p>
+    while($reg = mysqli_fetch_assoc($res)) {
+        $produto[$i] = $reg['produto'];
+        $descricao[$i] = $reg['descricao'];
+        ?>
 
-        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS...</button>
+            <div class="container" style="padding-top: 40px;">
 
-        </div>
+                <div class="marcador col-md-6 col-xl-4 " style="border: 1px solid #c1c1c1; border-radius: 20px;">
 
-        <div class="marcador col-md-6 col-xl-4 " style="border: 1px solid #c1c1c1; border-radius: 20px;">
+                <h2><?php echo $produto[$i]?></h2>
+                <img src="imgs/comercio-lite.png">
+                <p><?php echo $descricao[$i]?></p>
+                <button class="btn btn-success">SALVA NO CARRINHO </button><button class="btn btn-warning">SAIBA MAIS...</button>
 
-        <h2>ICOMERCIO LITE</h2>
-        <img src="imgs/comercio-lite.png">
-	    <p>A solução perfeita para pequenos negócios! Emissão de documentos fiscais, integração contábil. Conheça a versão Lite!</p>
-        <button class="btn btn-success">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS...</button>
+                </div>
 
-        </div>
+            </div>
 
-        <div class="marcador col-md-6 col-xl-4" style="border: 1px solid #c1c1c1; border-radius: 20px; padding-bottom: 10px;">
+           
 
-        <h2>ICHEF COMANDAS</h2>
-        <img src="imgs/cheff-comandas.png">
-        <p>Otimize gestão e atendimento de bares e restaurantes com uma solução sob medida. Sistema de comanda eletrônica e muito mais!</p>
-        <button class="btn btn-sucesses">SALVA NO CARRINHO </button>  <button class="btn btn-warning">SAIBA MAIS...</button>
-          
-        </div>
+        <?php
+    }
+}
 
-      </div>
+?>
 
-    </div>
-    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
