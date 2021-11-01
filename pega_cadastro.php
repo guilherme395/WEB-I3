@@ -1,7 +1,5 @@
 <?php
 
-ini_set('default_charset', 'utf-8');
-
 include 'conexao.php';
 
 $produto = $_POST['produto'];

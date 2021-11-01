@@ -77,7 +77,7 @@ header('Content-Type: text/html; charset=UTF-8');
                     
                     <div class="form-group" style="border: 1px solid #c1c1c1;">
 
-                    <input type="file" required name="arquivo"  class="form-control" >
+                    <input type="file" id="file" name="arquivo"  class="form-control" >
                     <label for="file">                     
                     <span  class="material-icons">
                     add_photo_alternate

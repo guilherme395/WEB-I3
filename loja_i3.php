@@ -4,7 +4,7 @@ include_once "conexao.php";
 
 $prdt = array();
 
-$sql = "SELECT * FROM tb_produto ORDER BY id DESC";
+$sql = "SELECT * FROM tb_produto ORDER BY id";
 
 
 
@@ -57,12 +57,12 @@ if($res = mysqli_query($conexao, $sql)) {
         $descricao[$i] = $reg['descricao'];
         ?>
 
-            <div class="container" style="padding-top: 40px;">
+            <div class="container" style="padding: 50px; margin-left: 450px;">
 
-                <div class="marcador col-md-6 col-xl-4 " style="border: 1px solid #c1c1c1; border-radius: 20px;">
+                <div class="marcador col-md-12 col-xl-8 " style="border: 1px solid #c1c1c1; border-radius: 20px;">
 
                 <h2><?php echo $produto[$i]?></h2>
-                <img src="imgs/comercio-lite.png">
+                <img src="imgs/comercio.png">
                 <p><?php echo $descricao[$i]?></p>
                 <button class="btn btn-success">SALVA NO CARRINHO </button><button class="btn btn-warning">SAIBA MAIS...</button>
 
