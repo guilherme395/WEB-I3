@@ -1,3 +1,10 @@
+<?php
+
+include_once "conexao.php";
+
+$sql = "SELECT * FROM tb_produto ORDER BY id";
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,6 +20,10 @@
 
     .table-bg{
         padding-top: 500px;
+    }
+
+    .spc_br{
+        padding-top: 20px;
     }
 
     </style>
@@ -32,7 +43,7 @@
             <a href="loja_i3.php" class="nav-link ">Home</a>
         </li>
         <li class="nav-item lat" >
-            <a href="cadastro_produto.php" class="nav-link">Cadastrar novo produto</a>
+            <a href="produtos.php" class="nav-link">Consulta de produto</a>
         </li>
         <li class="nav-item">
             <a href="index.php" class="nav-link">Sair</a>
@@ -41,60 +52,77 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container spc_br ">
 
 <div class="card">
   <div class="card-header">
    <div class="row"> 
-    <h2 class="card-title">Consulta de produto</h2>
-    <input class="btn btn-primary" type="button" value="Novo Produto" style=" position: absolute;  right: 0;">
-   </div>    
+    <h2 class="card-title"> &nbsp Consulta de produto</h2> 
+ </div>    
+
+
     
 
-  <div class="card-body">
+    <div class="card-body">
     
   
-            <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-            <th scope="col">id</th>
-            <th scope="col">Produto</th>
-            <th scope="col">Descrição</th>
-            </tr>
-        </thead>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                <th scope="col">id</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Preço de Custo</th>
+                <th scope="col">Preço de Venda</th>
+                </tr>
+            </thead>
 
-        <tbody>
+            <?php
 
-            <tr>
-            <th scope="row">1</th>
-            <td>ICOMERCIO</td>
-            <td>Solução completa para a gestão do seu negócio! Mais controle interno, gestão financeira e organização contábil em um só sistema!</td>
-            </tr>
-            <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            </tr>
-            <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            </tr>
+            if($res = mysqli_query($conexao, $sql)) {
+                $id = array();
+                $produto = array();
+                $descricao = array();
+                $preco_custo = array();
+                $preco_venda = array();
+                $i = 0;
 
+                while($reg = mysqli_fetch_assoc($res)) {
+                    $produto[$i] = $reg['produto'];
+                    $descricao[$i] = $reg['descricao'];
+                    $id[$i] = $reg['id'];
+                    $preco_custo[$i] = $reg['preco_custo'];
+                    $preco_venda[$i] = $reg['preco_venda'];
+            ?>
 
-        </tbody>
+            <tbody>
 
+                <tr>
+                <th><?php echo $id[$i]?></th>
+                <td><?php echo $produto[$i]?></td>
+                <td><?php echo $descricao[$i]?></td>
+                <th>R$<?php echo $preco_custo[$i]?></th>
+                <th>R$<?php echo $preco_venda[$i]?></th>
 
+                </tr>
 
+            </tbody>
 
-    </table>
+            <?php }
+                  } ?>
 
-  
+        </table>
 
-  </div>
+    </div>
+
+   <a href="cadastro_produto.php" class="btn btn-primary">Novo Produto</a>
+
+ </div>
+
 </div>
 
-</div>
 
+ 
 
 
 </body>
