@@ -18,10 +18,6 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
 
     <style>
 
-    .table-bg{
-        padding-top: 500px;
-    }
-
     .spc_br{
         padding-top: 20px;
     }
@@ -74,6 +70,7 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
                 <th scope="col">Descrição</th>
                 <th scope="col">Preço de Custo</th>
                 <th scope="col">Preço de Venda</th>
+                <th scope="col">Ações</th>
                 </tr>
             </thead>
 
@@ -98,12 +95,33 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
             <tbody>
 
                 <tr>
-                <th><?php echo $id[$i]?></th>
-                <td><?php echo $produto[$i]?></td>
-                <td><?php echo $descricao[$i]?></td>
-                <th>R$<?php echo $preco_custo[$i]?></th>
-                <th>R$<?php echo $preco_venda[$i]?></th>
+                <th>
+                    <?php echo $id[$i]?>
+                </th>
 
+                <td>
+                    <?php echo $produto[$i]?>
+                </td>
+
+                <td id="id_produto_<?php echo $id[$i]?>">
+                    <?php echo $descricao[$i]?>
+                </td>
+
+                <th>
+                    R$<?php echo $preco_custo[$i]?>
+                </th>
+
+                <th>
+                    R$<?php echo $preco_venda[$i]?>
+                </th>
+
+                <th>
+                    <a href="cadastro_produto.php?editar=1, ">E</a>
+                </th>
+
+                <th>
+
+                </th>
                 </tr>
 
             </tbody>
@@ -115,7 +133,7 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
 
     </div>
 
-   <a href="cadastro_produto.php" class="btn btn-primary">Novo Produto</a>
+   <a href="cadastro_produto.php?novo_produto=1" class="btn btn-primary">Novo Produto</a>
 
  </div>
 

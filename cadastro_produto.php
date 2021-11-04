@@ -1,6 +1,7 @@
 <?php
 
-header('Content-Type: text/html; charset=UTF-8');
+include_once "conexao.php";
+
 
 
 ?>
@@ -30,6 +31,20 @@ header('Content-Type: text/html; charset=UTF-8');
       }
       .div_form_group {
         border: 1px solid #c1c1c1;
+      }
+      /* Esconde o input */
+      input[type='file'] {
+        display: none
+      }
+
+      /* Aparência que terá o seletor de arquivo */
+      label {
+        background-color: #3498db;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        margin: px;
+        padding: 6px 20px
       }
     </style>
 
@@ -72,11 +87,13 @@ header('Content-Type: text/html; charset=UTF-8');
         <div class="card-login">
           <div class="card">
             <div class="card-header">
-              Cadastrar novo produto
+              Cadastrar Novo produto
             </div>
-            <div class="card-body">
-                <form  action="pega_cadastro.php"  method="post" enctype="multipart/form-data">
 
+            <div class="card-body">
+
+                  <form  action="pega_cadastro.php"  method="post" enctype="multipart/form-data">
+                  
                   <div class="form-group">
                     <input  name="produto" type="text" class="form-control" placeholder="Nome do produto">
                   </div>
@@ -86,27 +103,20 @@ header('Content-Type: text/html; charset=UTF-8');
                   </div>
 
                   <div class="form-group">
-                   <input name="preço_custo" class="form-control" type="number" required name="price" min="0" value="" step="any">
+                   <input name="preço_custo" class="form-control" type="number" placeholder="Preço de custo" min="0">
                   </div>
 
                   <div class="form-group">
-                     <input name="preço_venda" class="form-control" type="number" required name="price" min="0" value="" step="any">
+                     <input name="preço_venda" class="form-control" type="number" placeholder="Preço de venda" min="0">
                   </div>
 
-                  
                   <div >
                     
-                    <div class="form-group div_form_group">
+                    <div class="form-group">
 
-                    <input type="file" id="file" name="arquivo"  class="form-control" >
-                    <label for="file">                     
-                    <span  class="material-icons">
-                    add_photo_alternate
-                    </span>              
-                    <span>
-                    Selecione uma imagem
-                    </span>
-                    </label>
+                    <label for='selecao-arquivo'>Selecionar um arquivo &#187;</label>
+                    <input name="files" id='selecao-arquivo' type='file'>
+              
                     </div>
 
                   </div>
