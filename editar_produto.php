@@ -1,6 +1,7 @@
 <?php
 include_once "conexao.php";
-$sql = "SELECT * FROM tb_produto where id = 63";
+
+$sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -75,49 +76,63 @@ $sql = "SELECT * FROM tb_produto where id = 63";
 
 <?php } ?>
 
+
+
     <div class="container">    
       <div class="row">
 
         <div class="card-login">
           <div class="card">
             <div class="card-header">
-              Cadastrar novo produto
+              Editar produto
             </div>
 
             <div class="card-body">
+
+            <?php
+              if($res = mysqli_query($conexao, $sql)) {
+                  $id = array();
+                  $produto = array();
+                  $descricao = array();
+                  $preco_custo = array();
+                  $preco_venda = array();
+                  $i = 0;
+
+                  $reg = mysqli_fetch_assoc($res);
+                  $produto[$i] = $reg['produto'];
+                  $descricao[$i] = $reg['descricao'];
+                  $id[$i] = $reg['id'];
+                  $preco_custo[$i] = $reg['preco_custo'];
+                  $preco_venda[$i] = $reg['preco_venda'];
+            ?>
+              
+            <?php if (empty($_GET == $id[$i])) { ?>
+
                   <form  action="pega_cadastro.php"  method="POST">
                     
                     <input type="hidden" name="id" value="id">
                   
                   <div class="form-group">
-                    <input name="produto" type="text" class="form-control" placeholder="Nome do produto">
+                    <input value=" <?php echo $produto[$i]?>"  name="produto" type="text" class="form-control" placeholder="Nome do produto">
                   </div>
 
                   <div class="form-group">
-                    <input name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
+                    <input value="<?php echo $descricao[$i]?>" name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
                   </div>
 
                   <div class="form-group">
-                   <input name="preço_custo" class="form-control" type="number" placeholder="Preço de custo" min="0">
+                   <input value="<?php echo $preco_custo[$i]?>" name="preço_custo" class="form-control" type="number" placeholder="Preço de custo" min="0">
                   </div>
 
                   <div class="form-group">
-                     <input name="preço_venda" class="form-control" type="number" placeholder="Preço de venda" min="0">
+                     <input value="<?php echo $preco_venda[$i]?>" name="preço_venda" class="form-control" type="number" placeholder="Preço de venda" min="0">
                   </div>
 
-                  <div >
-                    
-                    <div class="form-group">
-
-                    <label for='selecao-arquivo'>Selecionar um arquivo &#187;</label>
-                    <input name="files" id='selecao-arquivo' type='file'>
-              
-                    </div>
-
-                  </div>
-
-                  <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Cadastrar</button>
+                  <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Salvar</button>
                 </form>
+
+                <?php } } ?>
+
             </div>
           </div>
         </div>

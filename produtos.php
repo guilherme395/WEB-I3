@@ -99,24 +99,28 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
                     <?php echo $id[$i]?>
                 </th>
 
-                <td>
+                <td id="id_<?php echo $id[$i]?>">
                     <?php echo $produto[$i]?>
                 </td>
 
-                <td id="id_produto_<?php echo $id[$i]?>">
+                <td id="id_<?php echo $id[$i]?>">
                     <?php echo $descricao[$i]?>
                 </td>
 
-                <th>
+                <th id="id_<?php echo $id[$i]?>">
                     R$<?php echo $preco_custo[$i]?>
                 </th>
 
-                <th>
+                <th id="id_<?php echo $id[$i]?>">
                     R$<?php echo $preco_venda[$i]?>
                 </th>
 
                 <th>
-                    <a href="cadastro_produto.php?editar=1, ">E</a>
+                    <a href="editar_produto.php?id=<?php echo $id[$i]?>" class="btn btn-info">Editar</a>
+                </th>
+
+                <th>
+                    <a href="" class="btn btn-danger">Excluir</a>
                 </th>
 
                 <th>
@@ -133,7 +137,7 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
 
     </div>
 
-   <a href="cadastro_produto.php?novo_produto=1" class="btn btn-primary">Novo Produto</a>
+   <a href="cadastro_produto.php" class="btn btn-primary">Novo Produto</a>
 
  </div>
 
