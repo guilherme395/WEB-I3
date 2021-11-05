@@ -27,6 +27,9 @@ $sql = "SELECT * FROM tb_produto ORDER BY id DESC";
                 border: 1px solid #c1c1c1; 
                 border-radius: 20px;
             }
+            .fnt{
+                font-size: 20px;
+            }
 
         </style>
     </head>
@@ -82,7 +85,7 @@ if($res = mysqli_query($conexao, $sql)) {
 
                 <h2><?php echo $produto[$i]?></h2>
                 <img src="imgs/comercio.png">
-                <p><?php echo $descricao[$i]?></p>
+                <p class="fnt"><?php echo $descricao[$i]?></p>
                 <h4>R$ <?php echo $preco_venda[$i]?></h4>
 
                 <br />

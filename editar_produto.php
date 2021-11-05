@@ -108,7 +108,7 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
               
             <?php if (empty($_GET == $id[$i])) { ?>
 
-                  <form  action="pega_cadastro.php"  method="POST">
+                  <form  action="pega_cadastro.php?id=<?php echo $id[$i]?>"  method="POST">
                     
                     <input type="hidden" name="id" value="id">
                   
@@ -121,11 +121,11 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
                   </div>
 
                   <div class="form-group">
-                   <input value="<?php echo $preco_custo[$i]?>" name="preço_custo" class="form-control" type="number" placeholder="Preço de custo" min="0">
+                   <input value="<?php echo $preco_custo[$i]?>" <input name="preço_custo" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
                   </div>
 
                   <div class="form-group">
-                     <input value="<?php echo $preco_venda[$i]?>" name="preço_venda" class="form-control" type="number" placeholder="Preço de venda" min="0">
+                     <input value="<?php echo $preco_venda[$i]?>" name="preço_venda" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
                   </div>
 
                   <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Salvar</button>

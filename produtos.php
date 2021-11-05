@@ -4,6 +4,7 @@ include_once "conexao.php";
 
 $sql = "SELECT * FROM tb_produto ORDER BY id";
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -48,6 +49,14 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
     </div>
 </nav>
 
+<?php if (isset($_GET['delete']) && $_GET['delete'] == 2) { ?>
+  
+  <div class="bg-danger pt-2 text-white d-flex justify-content-center">
+    <h5> Produto excluido com succeso !!! </h5>
+  </div> 
+
+<?php } ?>
+
 <div class="container spc_br ">
 
 <div class="card">
@@ -56,8 +65,6 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
     <h2 class="card-title"> &nbsp Consulta de produto</h2> 
  </div>    
 
-
-    
 
     <div class="card-body">
     
@@ -120,32 +127,31 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
                 </th>
 
                 <th>
-                    <a href="" class="btn btn-danger">Excluir</a>
+                    <a href="scripts.php?delete=<?php echo $id[$i]?>" class="btn btn-danger">Excluir</a>
                 </th>
 
                 <th>
 
                 </th>
                 </tr>
+                
 
             </tbody>
+                    
+            
 
             <?php }
                   } ?>
 
         </table>
 
-    </div>
+        <a href="cadastro_produto.php" class="btn btn-primary">Novo Produto</a>
 
-   <a href="cadastro_produto.php" class="btn btn-primary">Novo Produto</a>
+    </div>
 
  </div>
 
 </div>
-
-
- 
-
 
 </body>
 </html>

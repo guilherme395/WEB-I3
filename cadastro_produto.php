@@ -98,11 +98,11 @@ $sql = "SELECT * FROM tb_produto where id = 63";
                   </div>
 
                   <div class="form-group">
-                   <input name="preço_custo" class="form-control" type="number" placeholder="Preço de custo" min="0">
+                   <input name="preço_custo" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
                   </div>
 
                   <div class="form-group">
-                     <input name="preço_venda" class="form-control" type="number" placeholder="Preço de venda" min="0">
+                  <input name="preço_venda" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
                   </div>
 
                   <div >
