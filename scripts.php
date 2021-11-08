@@ -8,6 +8,4 @@ if (isset($_GET['delete'])) {
     header("Location: produtos.php?delete=2");
 }
 
-
-
 ?>

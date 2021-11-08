@@ -6,11 +6,11 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="../assets/css/styles.css">
-    
-
          <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+        <!-- Fave icon -->
+        <link href="imgs/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
         <title>Login | Loja Virtual I3</title>
     </head>
@@ -40,9 +40,6 @@
                 </div>
             </div>
         </div>
-
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
         
     </body>
 </html>

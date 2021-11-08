@@ -11,12 +11,13 @@ $sql = "SELECT * FROM tb_produto where id = 63";
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <link rel="stylesheet" type="text/css" href="cdt.css">
+  <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+  <!-- Fave icon -->
+  <link href="imgs/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
     <style>
       .card-login {
@@ -67,6 +68,7 @@ $sql = "SELECT * FROM tb_produto where id = 63";
     </div>
 </nav>
 
+<!-- Feedback visual, se caso nao for passado nenhum pararemtro nos inputs -->
 <?php if (isset($_GET['parametro']) && $_GET['parametro'] == 0) { ?>
   
   <div class="bg-danger pt-2 text-white d-flex justify-content-center">
@@ -98,11 +100,11 @@ $sql = "SELECT * FROM tb_produto where id = 63";
                   </div>
 
                   <div class="form-group">
-                   <input name="preço_custo" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
+                   <input name="preço_custo" type="number" placeholder="Preço de custo" min="0" step="0.00" class="form-control">
                   </div>
 
                   <div class="form-group">
-                  <input name="preço_venda" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
+                  <input name="preço_venda" type="number" placeholder="Preço de venda" min="0" step="0.00" class="form-control">
                   </div>
 
                   <div >

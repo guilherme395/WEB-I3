@@ -6,43 +6,45 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <title>Cadastro de produto</title>
+      <title>Cadastro de produto</title>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-  <link rel="stylesheet" type="text/css" href="cdt.css">
-
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-    <style>
-      .card-login {
-        padding: 30px 0 0 0;
-        width: 350px;
-        margin: 0 auto;
-      }
-      .div_form_group {
-        border: 1px solid #c1c1c1;
-      }
-      /* Esconde o input */
-      input[type='file'] {
-        display: none
-      }
+      <!-- Fave icon -->
+      <link href="imgs/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
-      /* Aparência que terá o seletor de arquivo */
-      label {
-        background-color: #3498db;
-        border-radius: 5px;
-        color: #fff;
-        cursor: pointer;
-        margin: px;
-        padding: 6px 20px
-      }
-    </style>
+        <style>
+          .card-login {
+            padding: 30px 0 0 0;
+            width: 350px;
+            margin: 0 auto;
+          }
+          .div_form_group {
+            border: 1px solid #c1c1c1;
+          }
+          /* Esconde o input */
+          input[type='file'] {
+            display: none
+          }
+
+          /* Aparência que terá o seletor de arquivo */
+          label {
+            background-color: #3498db;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            margin: px;
+            padding: 6px 20px
+          }
+        </style>
 
   </head>
   <body>
@@ -68,6 +70,7 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
     </div>
 </nav>
 
+<!-- Feedback visual, se caso nao for passado nenhum pararemtro nos inputs -->
 <?php if (isset($_GET['parametro']) && $_GET['parametro'] == 0) { ?>
   
   <div class="bg-danger pt-2 text-white d-flex justify-content-center">
@@ -75,8 +78,6 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
   </div> 
 
 <?php } ?>
-
-
 
     <div class="container">    
       <div class="row">
@@ -90,14 +91,17 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
             <div class="card-body">
 
             <?php
-              if($res = mysqli_query($conexao, $sql)) {
+
+              //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
+              if ($res = mysqli_query($conexao, $sql)) {
                   $id = array();
                   $produto = array();
                   $descricao = array();
                   $preco_custo = array();
                   $preco_venda = array();
                   $i = 0;
-
+                
+                  //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
                   $reg = mysqli_fetch_assoc($res);
                   $produto[$i] = $reg['produto'];
                   $descricao[$i] = $reg['descricao'];

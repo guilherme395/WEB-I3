@@ -14,8 +14,10 @@ $sql = "SELECT * FROM tb_produto ORDER BY id DESC";
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Loja virtual - I3</title>
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+        <!-- Fave icon -->
+        <link href="imgs/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
         <style>
 
@@ -65,23 +67,35 @@ $sql = "SELECT * FROM tb_produto ORDER BY id DESC";
     
 <?php } ?>
 
+<?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 2) { ?>
+
+<div class="bg-success pt-2 text-white d-flex justify-content-center">
+    <h5> Produto editado com sucesso !!! </h5>
+</div> 
+
+<?php } ?>
+
 <?php
 
-if($res = mysqli_query($conexao, $sql)) {
-    $produto = array();
-    $descricao = array();
-    $preco_venda = array();
-    $i = 0;
+                //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
+                
+                if($res = mysqli_query($conexao, $sql)) {
+                    $produto = array();
+                    $descricao = array();
+                    $preco_venda = array();
+                    $i = 0;
+                
+                //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
 
-    while($reg = mysqli_fetch_assoc($res)) {
-        $produto[$i] = $reg['produto'];
-        $descricao[$i] = $reg['descricao'];
-        $preco_venda[$i] = $reg['preco_venda'];
-        ?>
+                while($reg = mysqli_fetch_assoc($res)) {
+                    $produto[$i] = $reg['produto'];
+                    $descricao[$i] = $reg['descricao'];
+                    $preco_venda[$i] = $reg['preco_venda'];
+                    ?>
 
             <div class="container div_container ">
 
-                <div class="marcador col-md-12 col-xl-8 div_marcador ">
+                <div class="marcador col-md-6 col-xl-6 div_marcador ">
 
                 <h2><?php echo $produto[$i]?></h2>
                 <img src="imgs/comercio.png">
@@ -96,20 +110,7 @@ if($res = mysqli_query($conexao, $sql)) {
 
             </div>
 
-           
-
-        <?php
-    }
-}
-
-?>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.min.js"></script>
+<?php } } ?>
 
     </body>
 </html>
