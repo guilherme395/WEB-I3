@@ -8,27 +8,26 @@ $descricao = $_POST['descricao'];
 $preco_custo = $_POST['preço_custo'];
 $preco_venda = $_POST['preço_venda'];
 
-//Verfica se existe arquivo do tipo FILE , se caso existir ela entra no blobo IF
-if (isset($_FILES['files'])) {
-    $arquivo = $_FILES['files'];
+if (isset($_FILES['arquivo'])) {
 
-    if ($arquivo['error']) {
-        die("Falha ao enviar o arquivo !!! ");
+    $arquivo = $_FILES['arquivo']['name'];
+
+    $extensao = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
+
+    $novo_nome = md5(time()) . " . " . $extensao;
+
+    $diretorio = "upload/";
+
+    move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
+
+    $query = "INSERT INTO arquivo(id , path) VALUES('','$novo_nome', NOW())";
+
+    if (mysqli_query($conexao, $query)) {
+       $$msg = "arquivo enviado com sucesso";
     }
 
-    $pasta = "upload/";
-    $nomeDoArquivo = $arquivo['name'];
-    $novoNomeDOArquivo = uniqid();
-    $extensao = strtolower(pathinfo($novoNomeDOArquivo,PATHINFO_EXTENSION));
 
-    $deu_certo = move_uploaded_file($arquivo["tmp_name"], $pasta . $nomeDoArquivo . "." . $extensao);
 
-    if ($deu_certo) {
-        $sql = "INSERT INTO ";
-        mysqli_query($conexao, $sql);
-    } else {
-        echo ' Erro ao salvar a imagem';
-    }
 }
 
 //Verfica se os inputs estão vazios

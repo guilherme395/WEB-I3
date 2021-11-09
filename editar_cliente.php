@@ -88,7 +88,7 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
         <div class="card-login">
           <div class="card">
             <div class="card-header">
-              Editar produto
+              Editar cliente
             </div>
 
             <div class="card-body">
@@ -128,7 +128,7 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
                   </div>
 
                   <div class="form-group">
-                   <input value="<?php echo $preco_custo[$i]?>" <input name="preço_custo" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
+                   <input value="<?php echo $preco_custo[$i]?>" name="preço_custo" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
                   </div>
 
                   <div class="form-group">

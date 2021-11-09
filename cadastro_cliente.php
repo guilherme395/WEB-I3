@@ -5,7 +5,7 @@ $sql = "SELECT * FROM tb_produto where id = 63";
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <title>Cadastro de produto</title>
+  <title>Cadastro de cliente</title>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -86,7 +86,7 @@ $sql = "SELECT * FROM tb_produto where id = 63";
         <div class="card-login">
           <div class="card">
             <div class="card-header">
-              Cadastrar novo produto
+              Cadastrar novo cliente
             </div>
 
             <div class="card-body">
@@ -115,7 +115,7 @@ $sql = "SELECT * FROM tb_produto where id = 63";
                     <div class="form-group">
 
                     <label for='selecao-arquivo'>Selecionar um arquivo &#187;</label>
-                    <input name="arquivo" id='selecao-arquivo' type='file'>
+                    <input name="files" id='selecao-arquivo' type='file'>
               
                     </div>
 
