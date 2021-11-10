@@ -7,28 +7,9 @@ $produto = $_POST['produto'];
 $descricao = $_POST['descricao'];
 $preco_custo = $_POST['preço_custo'];
 $preco_venda = $_POST['preço_venda'];
-
-if (isset($_FILES['arquivo'])) {
-
-    $arquivo = $_FILES['arquivo']['name'];
-
-    $extensao = strtolower(pathinfo($arquivo, PATHINFO_EXTENSION));
-
-    $novo_nome = md5(time()) . " . " . $extensao;
-
-    $diretorio = "upload/";
-
-    move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
-
-    $query = "INSERT INTO arquivo(id , path) VALUES('','$novo_nome', NOW())";
-
-    if (mysqli_query($conexao, $query)) {
-       $$msg = "arquivo enviado com sucesso";
-    }
+$path_arquivo = $_FILES['arquivo'];
 
 
-
-}
 
 //Verfica se os inputs estão vazios
 if (empty($_POST['produto']) || empty($_POST['descricao']) || empty($_POST['preço_custo']) || empty($_POST['preço_venda']) ) {
@@ -36,13 +17,24 @@ if (empty($_POST['produto']) || empty($_POST['descricao']) || empty($_POST['pre�
     exit(s);
 }
 
+preg_match("/\.(png|jpg|jpeg){1}$/i", $path_arquivo["name"], $ext);
+
+    if ($ext == true) {
+        $nome_arquivo = md5(uniqid(time())) . "." . $ext[1];
+        $caminho_arquivo = "upload/" . $nome_arquivo;
+        move_uploaded_file($path_arquivo["tmp_name"], $caminho_arquivo);
+
+    }
+
+
+
 //Se a $_GET estiver vazio, o if faz o insert do produto, caso contrario, faz um update no mesmo
 if (empty($_GET)) {
 
     if ( $query = mysqli_query($conexao , "INSERT INTO
-                                             tb_produto (produto , descricao , PRECO_CUSTO , PRECO_VENDA) 
+                                             tb_produto (produto , descricao , PRECO_CUSTO , PRECO_VENDA , path_arquivo) 
                                             VALUES
-                                             ('{$produto}' , '{$descricao}' , '{$preco_custo}' , '{$preco_venda}')")){
+                                             ('{$produto}' , '{$descricao}' , '{$preco_custo}' , '{$preco_venda}' , '{$caminho_arquivo}')")){
 
                                             header("Location: loja_i3.php?inclusao=1");
     }
@@ -57,7 +49,8 @@ if (empty($_GET)) {
                                                 produto = '{$produto}' , 
                                                 descricao = '{$descricao}' , 
                                                 PRECO_CUSTO = '{$preco_custo}' , 
-                                                PRECO_VENDA = '{$preco_venda}'
+                                                PRECO_VENDA = '{$preco_venda}' ,
+                                                path_arquivo = '{$path_arquivo}'
                                             WHERE
                                                 id = " . $id_update)){
 

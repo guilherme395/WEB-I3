@@ -4,6 +4,7 @@ include_once "conexao.php";
 
 $sql = "SELECT * FROM tb_produto ORDER BY id DESC";
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -50,7 +51,10 @@ $sql = "SELECT * FROM tb_produto ORDER BY id DESC";
             <a href="loja_i3.php" class="nav-link ">Home</a>
         </li>
         <li class="nav-item lat" >
-            <a href="produtos.php" class="nav-link">Consulta de produto</a>
+            <a href="produtos.php" class="nav-link">Produtos</a>
+        </li>
+        <li class="nav-item">
+            <a href="clientes.php" class="nav-link">Clientes</a>
         </li>
         <li class="nav-item">
             <a href="index.php" class="nav-link">Sair</a>
@@ -75,42 +79,60 @@ $sql = "SELECT * FROM tb_produto ORDER BY id DESC";
 
 <?php } ?>
 
+<div style="padding-top: 20px;"></div>
+
+<div class="container">
+<div class="row">
+
 <?php
 
-                //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
-                
-                if($res = mysqli_query($conexao, $sql)) {
-                    $produto = array();
-                    $descricao = array();
-                    $preco_venda = array();
-                    $i = 0;
-                
-                //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
+//o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
+if($res = mysqli_query($conexao, $sql,)) {
+    $id = array();
+    $produto = array();
+    $descricao = array();
+    $preco_custo = array();
+    $preco_venda = array();
+    $arquivo = array();
+    $i = 0;
 
-                while($reg = mysqli_fetch_assoc($res)) {
-                    $produto[$i] = $reg['produto'];
-                    $descricao[$i] = $reg['descricao'];
-                    $preco_venda[$i] = $reg['preco_venda'];
-                    ?>
+//apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
+while($reg = mysqli_fetch_assoc($res)) {
+    $produto[$i] = $reg['produto'];
+    $descricao[$i] = $reg['descricao'];
+    $id[$i] = $reg['id'];
+    $preco_custo[$i] = $reg['preco_custo'];
+    $preco_venda[$i] = $reg['preco_venda'];
+    $path_arquivo[$i] = $reg['path_arquivo'];
+?>
 
-            <div class="container div_container ">
-
-                <div class="marcador col-md-6 col-xl-6 div_marcador ">
-
-                <h2><?php echo $produto[$i]?></h2>
-                <img src="imgs/comercio.png">
-                <p class="fnt"><?php echo $descricao[$i]?></p>
-                <h4>R$ <?php echo $preco_venda[$i]?></h4>
-
-                <br />
-
-                <button class="btn btn-success">SALVA NO CARRINHO </button><button class="btn btn-warning">SAIBA MAIS...</button>
-
-                </div>
-
+<div class="col-lg-4">
+        <div class="card card-margin">
+            <div class="card-header no-border">
+                <h3 class="card-title"><?php echo $produto[$i]?></h3>
             </div>
+            <div class="card-body pt-0">
+                <div class="widget-49">
+                    <div class="widget-49-title-wrapper">
+                        <div class="widget-49-date-success">
+                        <img src="<?php echo $path_arquivo[$i] ?>" class="card-img-top" alt="...">
+                        </div>
+                    </div>
+                        <p><?php echo $descricao[$i]?></p>
+                    <div class="widget-49-meeting-action">
+                    <button class="btn btn-success">SALVA NO CARRINHO </button><button class="btn btn-warning">SAIBA MAIS...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php } } ?>
+
+  </div>
+</div>
+
+
 
     </body>
 </html>

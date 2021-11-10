@@ -90,7 +90,7 @@ $sql = "SELECT * FROM tb_produto where id = 63";
             </div>
 
             <div class="card-body">
-                  <form  action="pega_cadastro.php"  method="POST">
+                  <form  action="pega_cadastro.php"  method="POST" enctype="multipart/form-data">
                     
                     <input type="hidden" name="id" value="id">
                   
