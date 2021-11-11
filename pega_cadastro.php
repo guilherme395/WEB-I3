@@ -50,7 +50,7 @@ if (empty($_GET)) {
                                                 descricao = '{$descricao}' , 
                                                 PRECO_CUSTO = '{$preco_custo}' , 
                                                 PRECO_VENDA = '{$preco_venda}' ,
-                                                path_arquivo = '{$path_arquivo}'
+                                                path_arquivo = '{$caminho_arquivo}'
                                             WHERE
                                                 id = " . $id_update)){
 

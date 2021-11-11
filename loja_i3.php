@@ -21,7 +21,13 @@ $sql = "SELECT * FROM tb_produto ORDER BY id DESC";
         <link href="imgs/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
         <style>
-
+            .div_space{
+                padding-bottom: 25px;
+            }
+            img{
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
             .div_container {
                 padding: 50px; 
                 margin-left: 450px;
@@ -104,11 +110,15 @@ while($reg = mysqli_fetch_assoc($res)) {
     $preco_custo[$i] = $reg['preco_custo'];
     $preco_venda[$i] = $reg['preco_venda'];
     $path_arquivo[$i] = $reg['path_arquivo'];
+
+$preco_venda[$i] = $reg['preco_venda'];
+$preco_corrigido = str_replace(",",".",$preco_venda[$i]);
+
 ?>
 
-<div class="col-lg-4">
+<div class="col-lg-4 div_space">
         <div class="card card-margin">
-            <div class="card-header no-border">
+            <div class="card-header no-border" >
                 <h3 class="card-title"><?php echo $produto[$i]?></h3>
             </div>
             <div class="card-body pt-0">
@@ -119,6 +129,8 @@ while($reg = mysqli_fetch_assoc($res)) {
                         </div>
                     </div>
                         <p><?php echo $descricao[$i]?></p>
+
+                        <h4>R$ <?php echo $preco_venda[$i]?></h4>
                     <div class="widget-49-meeting-action">
                     <button class="btn btn-success">SALVA NO CARRINHO </button><button class="btn btn-warning">SAIBA MAIS...</button>
                     </div>

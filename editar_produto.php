@@ -135,6 +135,17 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
                      <input value="<?php echo $preco_venda[$i]?>" name="preço_venda" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
                   </div>
 
+                  <div >
+                    
+                    <div class="form-group">
+
+                    <label for='selecao-arquivo'>Selecionar um arquivo &#187;</label>
+                    <input name="arquivo" id='selecao-arquivo' type='file'>
+              
+                    </div>
+
+                  </div>
+
                   <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Salvar</button>
                 </form>
 
