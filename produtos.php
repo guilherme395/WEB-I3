@@ -113,19 +113,19 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
                     <?php echo $id[$i]?>
                 </th>
 
-                <td id="id_<?php echo $id[$i]?>">
+                <td >
                     <?php echo $produto[$i]?>
                 </td>
 
-                <td id="id_<?php echo $id[$i]?>">
+                <td>
                     <?php echo $descricao[$i]?>
                 </td>
 
-                <th id="id_<?php echo $id[$i]?>">
+                <th >
                     R$<?php echo $preco_custo[$i]?>
                 </th>
 
-                <th id="id_<?php echo $id[$i]?>">
+                <th>
                     R$<?php echo $preco_venda[$i]?>
                 </th>
 

@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Training Application Form</title>
+    <title>Cadastro de cliente</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Fave icon -->
+      <link href="imgs/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+
     <style>
       html, body {
       min-height: 100%;
@@ -181,53 +189,83 @@
     </style>
   </head>
   <body>
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+
+<!-- Logo -->
+<a href="loja_i3.php" class="navbar-brand">Loja Virtual I3</a>
+
+<!-- navegacao -->
+<div class="collapse navbar-collapse" id="navegacao">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="loja_i3.php" class="nav-link ">Home</a>
+        </li>
+        <li class="nav-item lat" >
+            <a href="produtos.php" class="nav-link">Produtos</a>
+        </li>
+        <li class="nav-item">
+            <a href="clientes.php" class="nav-link">Clientes</a>
+        </li>
+        <li class="nav-item">
+            <a href="index.php" class="nav-link">Sair</a>
+        </li>
+        </ul>
+    </div>
+</nav>
+<!-- Feedback visual, se caso nao for passado nenhum pararemtro nos inputs -->
+<?php if (isset($_GET['parametro']) && $_GET['parametro'] == 0) { ?>
+  
+  <div class="bg-danger pt-2 text-white d-flex justify-content-center">
+    <h5> Nenhum parametro passado , tente novamente !!! </h5>
+  </div> 
+
+<?php } ?>
+
     <div class="testbox">
-      <form action="/">
+      <form action="db_insert_cliente.php" method="POST" autocomplete = "off">
+
         <div class="banner">
           <h1>Cadastro de cliente </h1>
         </div>
-        <h2>Applicant Details</h2>
+
         <div class="item">
           <p>NOME</p>
           <div class="name-item">
-            <input type="text" name="name" placeholder="Nome do cliente"/>
-            <input type="text" name="name" placeholder="CPF OU CNPJ"/>
 
-            <select>
-              <option value="">TIPO DE PESSOA</option>
+            <input type="text" name="nome" placeholder="NOME DO CLIENTE"/>
+            <input type="text" name="fantasia" placeholder="FANTASIA"/>
+
+            <select name="tipo_pessoa">
+              <option name="tipo_pessoa">TIPO DE PESSOA</option>
               <option value="F">FISICA</option>
               <option value="j">JURIDICA</option>
             </select>
             
-        </div>
-        <div class="item">
-          <p>Phone</p>
-          <input type="text" name="name"/>
-        </div>
-        <div class="item">
-          <p>Email</p>
-          <input type="text" name="name"/>
-        </div>
-        <div class="item">
-          <p>Address</p>
-          <input type="text" name="name" placeholder="Endereço" />
-          <input type="text" name="name" placeholder="Cidade" />
-          <div class="city-item">
-            <input type="text" name="name" placeholder="Estado" />
-            <input type="text" name="name" disabled placeholder="Region" />
-            <input type="text" name="name" placeholder="Postal / Zip code" />
-            <select>
-              <option value="">tipo pessoa</option>
-              <option value="F">fisica</option>
-              <option value="j">JURIDICA</option>
-              <option value="3">France</option>
-              <option value="4">Armenia</option>
-              <option value="5">USA</option>
-            </select>
           </div>
+
+        <p>CPF OU CNPJ</p>
+        <input type="text" name="cpf_cnpj" placeholder="CPF OU CNPJ"/>
+
+        <div class="item">
+          <p>TELEFONE</p>
+          <input type="text" placeholder="NUMERO PESSOAL" name="numero"/>
         </div>
+
+        <div class="item">
+
+          <p>ENDEREÇO</p>
+          <input type="text" name="bairro" placeholder="BAIRRO" />
+          <input type="text" name="cidade" placeholder="CIDADE" />
+          <input type="text" name="estado" placeholder="ESTADO" />
+          <input type="text" name="indereco" placeholder="ADICIONAL" />
+
+        </div>
+
         <div class="btn-block">
-          <button type="submit" href="/">Send</button>
+
+          <button type="submit">CADASTRAR</button>
+
         </div>
       </form>
     </div>

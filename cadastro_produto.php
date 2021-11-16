@@ -1,6 +1,6 @@
 <?php
 include_once "conexao.php";
-$sql = "SELECT * FROM tb_produto where id = 63";
+$sql = "SELECT * FROM tb_cliente where id = 63";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -90,7 +90,7 @@ $sql = "SELECT * FROM tb_produto where id = 63";
             </div>
 
             <div class="card-body">
-                  <form  action="pega_cadastro.php"  method="POST" enctype="multipart/form-data">
+                  <form  action="pega_cadastro.php"  method="POST" enctype="multipart/form-data" autocomplete = off>
                     
                     <input type="hidden" name="id" value="id">
                   

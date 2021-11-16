@@ -2,7 +2,7 @@
 
 include_once "conexao.php";
 
-$sql = "";
+$sql = "SELECT * FROM tb_cliente ORDER BY id";
 
 
 ?>
@@ -12,7 +12,7 @@ $sql = "";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Produtos</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -57,7 +57,15 @@ $sql = "";
 <?php if (isset($_GET['delete']) && $_GET['delete'] == 2) { ?>
   
   <div class="bg-danger pt-2 text-white d-flex justify-content-center">
-    <h5> cliente excluido com succeso !!! </h5>
+    <h5> Cliente excluido com succeso !!! </h5>
+  </div> 
+
+<?php } ?>
+
+<?php if (isset($_GET['inclusao']) && $_GET['inclusao'] == 1) { ?>
+  
+  <div class="bg-success pt-2 text-white d-flex justify-content-center">
+    <h5> Cliente cadastrado com succeso !!! </h5>
   </div> 
 
 <?php } ?>
@@ -76,7 +84,7 @@ $sql = "";
   
         <table class="table table-striped table-hover">
             <thead>
-                <tr>
+            <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
                 <th scope="col">CPF OU CNPJ</th>
@@ -86,45 +94,62 @@ $sql = "";
                 </tr>
             </thead>
 
+            <?php
+
+                //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
+                if($res = mysqli_query($conexao, $sql)) {
+                    $id = array();
+                    $nome = array();
+                    $cpf_cnpj = array();
+                    $cidade = array();
+                    $estado = array();
+                    $i = 0;
+
+                //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
+                while($reg = mysqli_fetch_assoc($res)) {
+                    $id[$i] = $reg['id'];
+                    $nome[$i] = $reg['nome'];
+                    $cpf_cnpj[$i] = $reg['cpf_cnpj'];
+                    $cidade[$i] = $reg['cidade'];
+                    $estado[$i] = $reg['estado'];
+            ?>
+
             <tbody>
 
                 <tr>
                 <th>
-
+                    <?php echo $id[$i]?>
                 </th>
 
                 <td>
-
+                    <?php echo $nome[$i]?>
                 </td>
 
                 <td>
-
+                    <?php echo $cpf_cnpj[$i]?>
                 </td>
 
                 <th>
-
+                    <?php echo $cidade[$i]?>
                 </th>
 
                 <th>
-     
+                    <?php echo $estado[$i]?>
                 </th>
 
                 <th>
                     <a href="editar_cliente.php?id=<?php echo $id[$i]?>" class="btn btn-info">Editar</a>
-                    <a href="scripts.php?delete=<?php echo $id[$i]?>" class="btn btn-danger">Excluir</a>
+                    <a href="scripts.php?delete_cli=<?php echo $id[$i]?>" class="btn btn-danger">Excluir</a>
                 </th>
 
-                </th>
                 </tr>
-                
 
             </tbody>
                     
             
 
-            <?php 
-            // }
-                //   } ?>
+            <?php }
+                  } ?>
 
         </table>
 
