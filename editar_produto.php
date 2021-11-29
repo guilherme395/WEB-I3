@@ -102,7 +102,7 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
                   $preco_venda[$i] = $reg['preco_venda'];
             ?>
               
-            <?php if (empty($_GET == $id[$i])) { ?>
+            <?php if (empty ($_GET == $id[$i])) { ?>
 
                   <form  action="pega_cadastro.php?id=<?php echo $id[$i]?>"  method="POST">
                     
