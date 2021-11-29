@@ -1,50 +1,49 @@
 <?php
-include_once "conexao.php";
-
+include "conexao.php";
 $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-      <title>Editar produto</title>
+  <title>Cadastro de produto</title>
 
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+  <!-- Fave icon -->
+  <link href="imgs/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
-      <!-- Fave icon -->
-      <link href="imgs/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <style>
+      .card-login {
+        padding: 30px 0 0 0;
+        width: 350px;
+        margin: 0 auto;
+      }
+      .div_form_group {
+        border: 1px solid #c1c1c1;
+      }
+      /* Esconde o input */
+      input[type='file'] {
+        display: none
+      }
 
-        <style>
-          .card-login {
-            padding: 30px 0 0 0;
-            width: 350px;
-            margin: 0 auto;
-          }
-          .div_form_group {
-            border: 1px solid #c1c1c1;
-          }
-          /* Esconde o input */
-          input[type='file'] {
-            display: none
-          }
-
-          /* Aparência que terá o seletor de arquivo */
-          label {
-            background-color: #3498db;
-            border-radius: 5px;
-            color: #fff;
-            cursor: pointer;
-            margin: px;
-            padding: 6px 20px
-          }
-        </style>
+      /* Aparência que terá o seletor de arquivo */
+      label {
+        background-color: #3498db;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        margin: px;
+        padding: 6px 20px
+      }
+    </style>
 
   </head>
   <body>
@@ -73,15 +72,6 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
     </div>
 </nav>
 
-<!-- Feedback visual, se caso nao for passado nenhum pararemtro nos inputs -->
-<?php if (isset($_GET['parametro']) && $_GET['parametro'] == 0) { ?>
-  
-  <div class="bg-danger pt-2 text-white d-flex justify-content-center">
-    <h5> Nenhum parametro passado , tente novamente !!! </h5>
-  </div> 
-
-<?php } ?>
-
     <div class="container">    
       <div class="row">
 
@@ -92,7 +82,6 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
             </div>
 
             <div class="card-body">
-
             <?php
 
               //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
@@ -106,9 +95,9 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
                 
                   //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
                   $reg = mysqli_fetch_assoc($res);
+                  $id[$i] = $reg['id'];
                   $produto[$i] = $reg['produto'];
                   $descricao[$i] = $reg['descricao'];
-                  $id[$i] = $reg['id'];
                   $preco_custo[$i] = $reg['preco_custo'];
                   $preco_venda[$i] = $reg['preco_venda'];
             ?>
@@ -128,29 +117,17 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
                   </div>
 
                   <div class="form-group">
-                   <input value="<?php echo $preco_custo[$i]?>" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
+                   <input value="<?php echo $preco_custo[$i]?>" name="preco_custo" type="number" placeholder="Preço de custo" min="0" class="form-control">
                   </div>
 
                   <div class="form-group">
-                     <input value="<?php echo $preco_venda[$i]?>" name="preço_venda" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
-                  </div>
-
-                  <div >
-                    
-                    <div class="form-group">
-
-                    <label for='selecao-arquivo'>Selecionar um arquivo &#187;</label>
-                    <input name="arquivo" id='selecao-arquivo' type='file'>
-              
-                    </div>
-
+                     <input value="<?php echo $preco_venda[$i]?>" name="preco_venda" type="number" placeholder="Preço de custo" min="0" class="form-control">
                   </div>
 
                   <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Salvar</button>
                 </form>
 
                 <?php } } ?>
-
             </div>
           </div>
         </div>

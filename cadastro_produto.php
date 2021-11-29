@@ -1,7 +1,3 @@
-<?php
-include_once "conexao.php";
-$sql = "SELECT * FROM tb_cliente where id = 63";
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -91,9 +87,7 @@ $sql = "SELECT * FROM tb_cliente where id = 63";
 
             <div class="card-body">
                   <form  action="pega_cadastro.php"  method="POST" enctype="multipart/form-data" autocomplete = off>
-                    
-                    <input type="hidden" name="id" value="id">
-                  
+                
                   <div class="form-group">
                     <input name="produto" type="text" class="form-control" placeholder="Nome do produto">
                   </div>
@@ -103,12 +97,12 @@ $sql = "SELECT * FROM tb_cliente where id = 63";
                   </div>
 
                   <div class="form-group">
-                   <input name="preço_custo" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
+                   <input name="preco_custo" type="number" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
                    
                   </div>
 
                   <div class="form-group">
-                  <input name="preço_venda" type="number" placeholder="Preço de venda" min="0,00" step="0.01" class="form-control">
+                  <input name="preco_venda" type="number" placeholder="Preço de venda" min="0,00" step="0,01" class="form-control">
                   </div>
 
                   <div >

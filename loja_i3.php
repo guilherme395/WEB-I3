@@ -132,7 +132,7 @@ $preco_corrigido = str_replace(",",".",$preco_venda[$i]);
 
                         <h4>R$ <?php echo $preco_venda[$i]?></h4>
                     <div class="widget-49-meeting-action">
-                    <button class="btn btn-success">SALVA NO CARRINHO </button><button class="btn btn-warning">SAIBA MAIS...</button>
+                    <button class="btn btn-success">SALVA NO CARRINHO </button>
                     </div>
                 </div>
             </div>
