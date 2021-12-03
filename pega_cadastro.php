@@ -35,6 +35,15 @@ if (empty($_GET)) {
 
     $id_update = $_GET['id'];
 
+    preg_match("/\.(png|jpg|jpeg){1}$/i", $path_arquivo["name"], $ext);
+
+    if ($ext == true) {
+        $nome_arquivo = md5(uniqid(time())) . "." . $ext[1];
+        $caminho_arquivo = "upload/" . $nome_arquivo;
+        move_uploaded_file($path_arquivo["tmp_name"], $caminho_arquivo);
+
+    }
+
     if ( $query = mysqli_query($conexao , "UPDATE
                                                 tb_produto 
                                             SET

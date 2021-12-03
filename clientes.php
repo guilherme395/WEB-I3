@@ -1,9 +1,8 @@
 <?php
-
 include_once "conexao.php";
 
-$sql = "SELECT * FROM tb_cliente ORDER BY id";
-
+$sql = $conn->prepare("SELECT * FROM tb_cliente");
+$sql->execute();
 
 ?>
 <!DOCTYPE html>
@@ -94,47 +93,29 @@ $sql = "SELECT * FROM tb_cliente ORDER BY id";
                 </tr>
             </thead>
 
-            <?php
-
-                //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
-                if($res = mysqli_query($conexao, $sql)) {
-                    $id = array();
-                    $nome = array();
-                    $cpf_cnpj = array();
-                    $cidade = array();
-                    $estado = array();
-                    $i = 0;
-
-                //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
-                while($reg = mysqli_fetch_assoc($res)) {
-                    $id[$i] = $reg['id'];
-                    $nome[$i] = $reg['nome'];
-                    $cpf_cnpj[$i] = $reg['cpf_cnpj'];
-                    $cidade[$i] = $reg['cidade'];
-                    $estado[$i] = $reg['estado'];
-            ?>
+            <?php while ($registros = $sql->fetch(PDO::FETCH_ASSOC)) {?>
 
             <tbody>
 
                 <tr>
                 <th>
-                    <?php echo $id[$i]?>
+                    <?php echo $registros["id"]?>
                 </th>
 
                 <td>
-                    <?php echo $nome[$i]?>
+                    <?php echo $registros["nome"] ?>
                 </td>
 
                 <td>
-                    <?php echo $cpf_cnpj[$i]?>
+                    <?php echo $registros["cpf_cnpj"]?>
                 </td>
 
                 <th>
-                    <?php echo $cidade[$i]?>
+                    <?php echo $registros["cidade"]?>
                 </th>
 
                 <th>
-                    <?php echo $estado[$i]?>
+                    <?php echo $registros["estado"] ?>
                 </th>
 
                 <th>
@@ -148,8 +129,7 @@ $sql = "SELECT * FROM tb_cliente ORDER BY id";
                     
             
 
-            <?php }
-                  } ?>
+            <?php } ?>
 
         </table>
 

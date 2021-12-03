@@ -117,11 +117,22 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
                   </div>
 
                   <div class="form-group">
-                   <input value="<?php echo $preco_custo[$i]?>" name="preco_custo" type="number" placeholder="Preço de custo" min="0" class="form-control">
+                    <input value="<?php echo $preco_custo[$i]?>" name="preco_custo" type="number" placeholder="Preço de custo" min="0" class="form-control">
                   </div>
 
                   <div class="form-group">
-                     <input value="<?php echo $preco_venda[$i]?>" name="preco_venda" type="number" placeholder="Preço de custo" min="0" class="form-control">
+                    <input value="<?php echo $preco_venda[$i]?>" name="preco_venda" type="number" placeholder="Preço de custo" min="0" class="form-control">
+                  </div>
+
+                  <div >
+                    
+                    <div class="form-group">
+
+                    <label for='selecao-arquivo'>Selecionar um arquivo &#187;</label>
+                    <input name="arquivo" id='selecao-arquivo' type='file'>
+              
+                    </div>
+
                   </div>
 
                   <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Salvar</button>

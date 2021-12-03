@@ -20,13 +20,28 @@ if (empty($_GET)) {
     var_dump($tipo_pessoa);
 
     if ( $query = mysqli_query($conexao , "INSERT INTO
-                                            `tb_cliente` (`nome`, `tipo_pessoa`, `fantasia`, `cpf_cnpj`, `indereco`, `numero`, `bairro`, `cidade`, `estado`)
+                                                `tb_cliente` 
+                                                    (`nome`, 
+                                                    `tipo_pessoa`, 
+                                                    `fantasia`, 
+                                                    `cpf_cnpj`, 
+                                                    `indereco`, 
+                                                    `numero`, 
+                                                    `bairro`, 
+                                                    `cidade`, 
+                                                    `estado`)
                                              VALUES
-                                            ('{$nome}','{$tipo_pessoa}','{$fantasia}','{$cpf_cnpj}','{$indereco}','{$numero}','{$bairro}','{$cidade}','{$estado}')")){
+                                                    ('{$nome}',
+                                                    '{$tipo_pessoa}',
+                                                    '{$fantasia}',
+                                                    '{$cpf_cnpj}',
+                                                    '{$indereco}',
+                                                    '{$numero}',
+                                                    '{$bairro}',
+                                                    '{$cidade}',
+                                                    '{$estado}')")){
                                             header("Location: clientes.php?inclusao=1");
-    }
-
-} else {
+}} else {
 
     $id_update = $_GET['id'];
 

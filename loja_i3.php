@@ -2,8 +2,8 @@
 
 include_once "conexao.php";
 
-$sql = "SELECT * FROM tb_produto ORDER BY id DESC";
-
+$sql = $conn->prepare("SELECT * FROM tb_produto");
+$sql->execute();
 
 ?>
 <!DOCTYPE html>
@@ -90,56 +90,32 @@ $sql = "SELECT * FROM tb_produto ORDER BY id DESC";
 <div class="container">
 <div class="row">
 
-<?php
-
-//o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
-if($res = mysqli_query($conexao, $sql,)) {
-    $id = array();
-    $produto = array();
-    $descricao = array();
-    $preco_custo = array();
-    $preco_venda = array();
-    $arquivo = array();
-    $i = 0;
-
-//apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
-while($reg = mysqli_fetch_assoc($res)) {
-    $produto[$i] = $reg['produto'];
-    $descricao[$i] = $reg['descricao'];
-    $id[$i] = $reg['id'];
-    $preco_custo[$i] = $reg['preco_custo'];
-    $preco_venda[$i] = $reg['preco_venda'];
-    $path_arquivo[$i] = $reg['path_arquivo'];
-
-$preco_venda[$i] = $reg['preco_venda'];
-$preco_corrigido = str_replace(",",".",$preco_venda[$i]);
-
-?>
+<?php while ($registros = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
 
 <div class="col-lg-4 div_space">
         <div class="card card-margin">
             <div class="card-header no-border" >
-                <h3 class="card-title"><?php echo $produto[$i]?></h3>
+                <h3 class="card-title"><?php echo $registros["produto"] ?></h3>
             </div>
             <div class="card-body pt-0">
                 <div class="widget-49">
                     <div class="widget-49-title-wrapper">
                         <div class="widget-49-date-success">
-                        <img src="<?php echo $path_arquivo[$i] ?>" class="card-img-top" alt="...">
+                        <img src="<?php echo $registros["path_arquivo"] ?>" class="card-img-top" alt="...">
                         </div>
                     </div>
-                        <p><?php echo $descricao[$i]?></p>
+                        <p><?php echo $registros["descricao"]?></p>
 
-                        <h4>R$ <?php echo $preco_venda[$i]?></h4>
+                        <h4>R$ <?php echo $registros["preco_venda"] ?></h4>
                     <div class="widget-49-meeting-action">
-                    <button class="btn btn-success">SALVA NO CARRINHO </button>
+                        <a class="btn btn-success" href="pedido.php?id=<?php echo $registros["id"] ?>">SALVAR NO CARRINHO</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<?php } } ?>
+<?php } ?>
 
   </div>
 </div>

@@ -1,9 +1,8 @@
 <?php
-
 include_once "conexao.php";
 
-$sql = "SELECT * FROM tb_produto ORDER BY id";
-
+$sql = $conn->prepare("SELECT * FROM tb_cliente");
+$sql->execute();
 
 ?>
 <!DOCTYPE html>
@@ -86,31 +85,13 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
                 </tr>
             </thead>
 
-            <?php
-
-                //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
-                if($res = mysqli_query($conexao, $sql)) {
-                    $id = array();
-                    $produto = array();
-                    $descricao = array();
-                    $preco_custo = array();
-                    $preco_venda = array();
-                    $i = 0;
-
-                //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
-                while($reg = mysqli_fetch_assoc($res)) {
-                    $produto[$i] = $reg['produto'];
-                    $descricao[$i] = $reg['descricao'];
-                    $id[$i] = $reg['id'];
-                    $preco_custo[$i] = $reg['preco_custo'];
-                    $preco_venda[$i] = $reg['preco_venda'];
-            ?>
+            <?php while ($reg = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
 
             <tbody>
 
                 <tr>
                 <th>
-                    <?php echo $id[$i]?>
+                    <?php echo $lista["id"] ?>
                 </th>
 
                 <td >
@@ -147,8 +128,7 @@ $sql = "SELECT * FROM tb_produto ORDER BY id";
                     
             
 
-            <?php }
-                  } ?>
+            <?php } ?>
 
         </table>
 
