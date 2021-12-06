@@ -1,7 +1,12 @@
 <?php
 include_once "conexao.php";
-$sql = $conn->prepare("SELECT * FROM tb_produto where id =") . $_GET['id'];
+
+$sql = $conn->prepare("SELECT * FROM tb_produto where id = " . $_GET["id"]);
+$sql->execute();
+
 $query = $conn->prepare("SELECT * FROM `tb_cliente` WHERE 1");
+$query->execute();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -83,42 +88,20 @@ $query = $conn->prepare("SELECT * FROM `tb_cliente` WHERE 1");
 
             <div class="card-body">
 
-            <?php
+                  <form  action="db_insert_pedido.php?id=<?php echo $_GET["id"]?>"  method="POST">
 
-              //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
-              if ($res = mysqli_query($conexao, $sql)) {
-                  $id = array();
-                  $produto = array();
-                  $descricao = array();
-                  $preco_custo = array();
-                  $preco_venda = array();
-                  $i = 0;
-                
-                  //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
-                  $reg = mysqli_fetch_assoc($res);
-                  $produto[$i] = $reg['produto'];
-                  $descricao[$i] = $reg['descricao'];
-                  $id[$i] = $reg['id'];
-                  $preco_custo[$i] = $reg['preco_custo'];
-                  $preco_venda[$i] = $reg['preco_venda'];
-            ?>
-              
-            <?php if (empty($_GET == $id[$i])) { ?>
-
-                  <form  action="db_insert_pedido.php?id=<?php echo $id[$i]?>"  method="POST">
-                    
-                    <input type="hidden" name="id" value="id">
+                  <?php $registros = $sql->fetch(PDO::FETCH_ASSOC) ?>
                   
                   <div class="form-group">
-                    <input value=" <?php echo $produto[$i]?>" disabled name="produto" type="text" class="form-control" placeholder="Nome do produto">
+                    <input value=" <?php echo $registros['produto'] ?>" disabled name="produto" type="text" class="form-control" placeholder="Nome do produto">
                   </div>
 
                   <div class="form-group">
-                    <input value="<?php echo $descricao[$i]?>" disabled name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
+                    <input value="<?php echo $registros["descricao"]?>" disabled name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
                   </div>
 
                   <div class="form-group">
-                     <input value="R$ <?php echo $preco_venda[$i]?>" disabled name="preço_venda" type="text" placeholder="Preço de custo" min="0" step="0.01" class="form-control">
+                     <input value="R$ <?php echo $registros["preco_venda"]?>" disabled name="preço_venda" type="text" placeholder="Preço de venda" min="0" step="0.01" class="form-control">
                   </div>
 
                   <div class="form-group">
@@ -126,25 +109,18 @@ $query = $conn->prepare("SELECT * FROM `tb_cliente` WHERE 1");
                   </div>
 
                   <select class="form-control">
-                  <option selected>Selecionar Cliente</option>
-                  <?php
-                  if($res = mysqli_query($conexao, $query)) {
-                    $nome = array();
-                    $id = array();
-                    $i = 0;
 
-                  //apos a estapa de cima, criei uma nova variavel $reg que significa "registros", usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
-                  while($reg = mysqli_fetch_assoc($res)) {
-                    $nome[$i] = $reg['nome'];
-                    $id[$i] = $reg['id'];
-                  ?>
-                    <option value="<?php echo $id[$i]?>"><?php echo $nome[$i]?></option>
-                    <?php } } ?>
+                  <option selected>Selecionar Cliente</option>
+
+                  <?php while ($registros = $query->fetch(PDO::FETCH_ASSOC)){?>
+
+                   <option value="<?php echo $registros["id"]?>"><?php echo $registros["nome"]?></option>
+
+                  <?php } ?>
+
                   </select>
                   <br>
                   <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">ADICIONAR AO CARRINHO</button>
-                
-                  <?php } } ?>
                 </form>
             </div>
           </div>

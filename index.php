@@ -1,12 +1,3 @@
-<?php
-
-if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
-    echo 'We don\'t have mysqli!!!';
-} else {
-    echo 'Phew we have it!';
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,7 +5,7 @@ if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- CSS -->
-        <link rel="stylesheet" href="../assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
          <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -24,6 +15,14 @@ if (!function_exists('mysqli_init') && !extension_loaded('mysqli')) {
         <title>Login | Loja Virtual I3</title>
     </head>
     <body>
+    <?php if (isset($_GET['error']) && $_GET['error'] == 1) { ?>
+
+        <div class="bg-danger pt-2 text-white d-flex justify-content-center">
+            <h5> Usuario não autenticado, Tente novamente</h5>
+        </div> 
+
+    <?php } ?>
+
         <div class="login">
             <div class="login__content">
                 <div class="login__img">

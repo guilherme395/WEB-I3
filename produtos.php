@@ -1,7 +1,7 @@
 <?php
 include_once "conexao.php";
 
-$sql = $conn->prepare("SELECT * FROM tb_cliente");
+$sql = $conn->prepare("SELECT * FROM tb_produto");
 $sql->execute();
 
 ?>
@@ -85,41 +85,37 @@ $sql->execute();
                 </tr>
             </thead>
 
-            <?php while ($reg = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
+            <?php while ($registros = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
 
             <tbody>
 
                 <tr>
                 <th>
-                    <?php echo $lista["id"] ?>
+                    <?php echo $registros["id"] ?>
                 </th>
 
                 <td >
-                    <?php echo $produto[$i]?>
+                    <?php echo $registros["produto"] ?>
                 </td>
 
                 <td>
-                    <?php echo $descricao[$i]?>
+                    <?php echo $registros["descricao"]?>
                 </td>
 
                 <th >
-                    R$<?php echo $preco_custo[$i]?>
+                    R$<?php echo $registros["preco_custo"]?>
                 </th>
 
                 <th>
-                    R$<?php echo $preco_venda[$i]?>
+                    R$<?php echo $registros["preco_venda"]?>
                 </th>
 
                 <th>
-                    <a href="editar_produto.php?id=<?php echo $id[$i]?>" class="btn btn-info">Editar</a>
+                    <a href="editar_produto.php?id=<?php echo $registros["id"]?>" class="btn btn-info">Editar</a>
                 </th>
 
                 <th>
-                    <a href="scripts.php?delete=<?php echo $id[$i]?>" class="btn btn-danger">Excluir</a>
-                </th>
-
-                <th>
-
+                    <a href="scripts.php?delete=<?php echo $registros["id"]?>" class="btn btn-danger">Excluir</a>
                 </th>
                 </tr>
                 

@@ -1,6 +1,8 @@
 <?php
 include "conexao.php";
-$sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
+
+$sql = $conn->prepare("SELECT * FROM tb_produto where id = " . $_GET["id"]);
+$sql->execute();
 
 ?>
 <!DOCTYPE html>
@@ -82,46 +84,27 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
             </div>
 
             <div class="card-body">
-            <?php
 
-              //o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
-              if ($res = mysqli_query($conexao, $sql)) {
-                  $id = array();
-                  $produto = array();
-                  $descricao = array();
-                  $preco_custo = array();
-                  $preco_venda = array();
-                  $i = 0;
-                
-                  //apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
-                  $reg = mysqli_fetch_assoc($res);
-                  $id[$i] = $reg['id'];
-                  $produto[$i] = $reg['produto'];
-                  $descricao[$i] = $reg['descricao'];
-                  $preco_custo[$i] = $reg['preco_custo'];
-                  $preco_venda[$i] = $reg['preco_venda'];
-            ?>
-              
-            <?php if (empty ($_GET == $id[$i])) { ?>
+            <?php $registros = $sql->fetch(PDO::FETCH_ASSOC) ?>
 
                   <form  action="pega_cadastro.php?id=<?php echo $id[$i]?>"  method="POST">
                     
                     <input type="hidden" name="id" value="id">
                   
                   <div class="form-group">
-                    <input value=" <?php echo $produto[$i]?>"  name="produto" type="text" class="form-control" placeholder="Nome do produto">
+                    <input value=" <?php echo $registros["produto"]?>"  name="produto" type="text" class="form-control" placeholder="Nome do produto">
                   </div>
 
                   <div class="form-group">
-                    <input value="<?php echo $descricao[$i]?>" name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
+                    <input value="<?php echo $registros["descricao"]?>" name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
                   </div>
 
                   <div class="form-group">
-                    <input value="<?php echo $preco_custo[$i]?>" name="preco_custo" type="number" placeholder="Preço de custo" min="0" class="form-control">
+                    <input value="<?php echo $registros["preco_custo"]?>" name="preco_custo" type="number" placeholder="Preço de custo" min="0" class="form-control">
                   </div>
 
                   <div class="form-group">
-                    <input value="<?php echo $preco_venda[$i]?>" name="preco_venda" type="number" placeholder="Preço de custo" min="0" class="form-control">
+                    <input value="<?php echo $registros["preco_venda"]?>" name="preco_venda" type="number" placeholder="Preço de custo" min="0" class="form-control">
                   </div>
 
                   <div >
@@ -137,8 +120,6 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
 
                   <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Salvar</button>
                 </form>
-
-                <?php } } ?>
             </div>
           </div>
         </div>

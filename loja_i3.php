@@ -90,12 +90,12 @@ $sql->execute();
 <div class="container">
 <div class="row">
 
-<?php while ($registros = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
+<?php while($registros = $sql->fetch(PDO::FETCH_ASSOC)) {?>
 
 <div class="col-lg-4 div_space">
         <div class="card card-margin">
             <div class="card-header no-border" >
-                <h3 class="card-title"><?php echo $registros["produto"] ?></h3>
+                <h3 class="card-title"><?php echo $registros["produto"]?></h3>
             </div>
             <div class="card-body pt-0">
                 <div class="widget-49">
@@ -106,7 +106,7 @@ $sql->execute();
                     </div>
                         <p><?php echo $registros["descricao"]?></p>
 
-                        <h4>R$ <?php echo $registros["preco_venda"] ?></h4>
+                        <h4>R$<?php echo $registros["preco_venda"]?></h4>
                     <div class="widget-49-meeting-action">
                         <a class="btn btn-success" href="pedido.php?id=<?php echo $registros["id"] ?>">SALVAR NO CARRINHO</a>
                     </div>

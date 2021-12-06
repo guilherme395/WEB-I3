@@ -1,33 +1,28 @@
 <?php
 
-include ('conexao.php');
+include_once("conexao.php");
 
-//o if verifica se os inputs estão vazios , caso esteja , o usuario é redirecionado para a index de login.
-if (empty($_POST['usuario']) || empty($_POST['senha'])) {
-    header('Location: index.php');
-    exit(s);
-}
+//Faz a consulta na tabela usuario
+$query = "SELECT * FROM usuario where usuario = :usuario AND senha = :senha";
 
-// Atribui o valor passado via POST a variaveis 
-$usuario = mysqli_real_escape_string($conexao , $_POST['usuario']);
-$senha = mysqli_real_escape_string($conexao , $_POST['senha']);
+//prepara a query
+$resultado =  $conn->prepare($query);
 
-//Faz a verificação dentro do banco , se caso o "Usuario && senha" for compativéis, o usuario e aútenticado.
-$query = "select usuario_id, usuario from usuario where usuario = '{$usuario}' and senha = md5 ('{$senha}') ";
+//Atribui a variaveisos valores passado por POST
+$usuario =($_POST["usuario"]);
+$senha =($_POST["senha"]);
 
-//Executando a query.
-$result = mysqli_query($conexao, $query);
+$resultado->bindValue(":usuario" , $usuario);
+$resultado->bindValue(":senha" , md5($senha));
 
-//Atribui a variavel $row a quantidade de linha retornada pela variavel $result.
-$row = mysqli_num_rows($result);
+$resultado->execute();
 
-//se o valor retornado pelo banco for == 1 devido a quantidade de linhas afetadas, o usuario e autenticado e redirecionado para a Loja virtual , caso contrario ele e redirecionado para a index de login.
-if($row == 1) {
-    header('Location: loja_i3.php');
-    exit();
+$numero_registro = $resultado->rowCount();
+
+if ($numero_registro != 0) {
+    header("Location: loja_i3.php");
 } else {
-    header('Location: index.php?login%=%erro');
-    exit();
+    header("Location: index.php?error=1");
 }
 
 ?>
