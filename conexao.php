@@ -12,5 +12,5 @@ try{
   $conn = new PDO($dsn, $usuario , $senha);
 
 } catch(PDOException $e) {
-  echo 'Erro:' . $e->getMessage();
+  echo 'Erro: '. $e->getCode(). ' Mensagem: '. $e->getMessage();
 }

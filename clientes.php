@@ -119,8 +119,8 @@ $sql->execute();
                 </th>
 
                 <th>
-                    <a href="editar_cliente.php?id=<?php echo $id[$i]?>" class="btn btn-info">Editar</a>
-                    <a href="scripts.php?delete_cli=<?php echo $id[$i]?>" class="btn btn-danger">Excluir</a>
+                    <a href="editar_cliente.php?id=<?php echo $registros["id"]?>" class="btn btn-info">Editar</a>
+                    <a href="scripts.php?delete_cli=<?php echo $registros["id"]?>" class="btn btn-danger">Excluir</a>
                 </th>
 
                 </tr>

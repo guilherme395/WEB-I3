@@ -1,7 +1,9 @@
 <?php
 include_once "conexao.php";
 
-$sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
+$sql = $conn->prepare("SELECT * FROM tb_cliente where id = " . $_GET['id']);
+$sql->execute();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -227,39 +229,10 @@ $sql = "SELECT * FROM tb_produto where id = " . $_GET['id'];
 
 <?php } ?>
 
-<?php
-
-//o if pega a variavel $res, e atribui a função mysqli_query, que executa o comando sql, apos isso, defini variaveis e atribui a arrays
-if($res = mysqli_query($conexao, $sql)) {
-    $id = array();
-    $nome = array();
-    $tipo_pessoa = array();
-    $fantasia = array();
-    $cpf_cnpj = array();
-    $indereco = array();
-    $numero = array();
-    $bairro = array();
-    $cidade = array();
-    $estado = array();
-    $i = 0;
-
-//apos a estapa de cima, criei uma nova variavel $reg que significa registros, usei a função mysqli_fetch_assoc, que faz a conversão de array para strings, e atribui a cada campo do banco 
-while($reg = mysqli_fetch_assoc($res)) {
-    $id[$i] = $reg['id'];
-    $nome[$i] = $reg['nome'];
-    $tipo_pessoa[$i] = $reg['tipo_pessoa'];
-    $fantasia[$i] = $reg[$fantasia];
-    $cpf_cnpj[$i] = $reg['cpf_cnpj'];
-    $indereco[$i] = $reg['indereco'];
-    $numero[$i] = $reg['numero'];
-    $bairro[$i] = $reg['bairro'];
-    $cidade[$i] = $reg['cidade'];
-    $estado[$i] = $reg['estado'];
-
-?>
+<?php $registros = $sql->fetch(PDO::FETCH_ASSOC) ?>
 
     <div class="testbox">
-      <form action="db_insert_cliente.php?id=<?php echo $id[$i]?> " method="POST" autocomplete = "off">
+      <form action="db_insert_cliente.php?id=<?php echo $registros["id"]?> " method="POST" autocomplete = "off">
 
         <div class="banner">
           <h1>Cadastro de cliente </h1>
@@ -269,11 +242,11 @@ while($reg = mysqli_fetch_assoc($res)) {
           <p>NOME</p>
           <div class="name-item">
 
-            <input value=" <?php echo $nome[$i]?> " type="text" name="nome" placeholder="NOME DO CLIENTE"/>
-            <input value=" <?php echo $fantasia[$i]?> " type="text" name="fantasia" placeholder="FANTASIA"/>
+            <input value=" <?php echo $registros["nome"]?> " type="text" name="nome" placeholder="NOME DO CLIENTE"/>
+            <input value=" <?php echo $registros["fantasia"]?> " type="text" name="fantasia" placeholder="FANTASIA"/>
 
             <select name="tipo_pessoa">
-              <option value=" <?php echo $tipo_pessoa[$i]?> " name="tipo_pessoa">TIPO DE PESSOA</option>
+              <option value=" <?php echo $registros["tipo_pessoa"]?> " name="tipo_pessoa">TIPO DE PESSOA</option>
               <option value="F">FISICA</option>
               <option value="j">JURIDICA</option>
             </select>
@@ -281,20 +254,20 @@ while($reg = mysqli_fetch_assoc($res)) {
           </div>
 
         <p>CPF OU CNPJ</p>
-        <input value=" <?php echo $cpf_cnpj[$i]?> " type="text" name="cpf_cnpj" placeholder="CPF OU CNPJ"/>
+        <input value=" <?php echo $registros["cpf_cnpj"]?> " type="text" name="cpf_cnpj" placeholder="CPF OU CNPJ"/>
 
         <div class="item">
           <p>TELEFONE</p>
-          <input value=" <?php echo $numero[$i]?> " type="text" placeholder="NUMERO PESSOAL" name="numero"/>
+          <input value=" <?php echo $registros["numero"]?> " type="text" placeholder="NUMERO PESSOAL" name="numero"/>
         </div>
 
         <div class="item">
 
           <p>ENDEREÇO</p>
-          <input value=" <?php echo $bairro[$i]?> " type="text" name="bairro" placeholder="BAIRRO" />
-          <input value=" <?php echo $cidade[$i]?> " type="text" name="cidade" placeholder="CIDADE" />
-          <input value=" <?php echo $estado[$i]?> " type="text" name="estado" placeholder="ESTADO" />
-          <input value=" <?php echo $indereco[$i]?> " type="text" name="indereco" placeholder="ADICIONAL" />
+          <input value=" <?php echo $registros["bairro"]?> " type="text" name="bairro" placeholder="BAIRRO" />
+          <input value=" <?php echo $registros["cidade"]?> " type="text" name="cidade" placeholder="CIDADE" />
+          <input value=" <?php echo $registros["estado"]?> " type="text" name="estado" placeholder="ESTADO" />
+          <input value=" <?php echo $registros["indereco"]?> " type="text" name="indereco" placeholder="ADICIONAL" />
 
         </div>
 
@@ -304,7 +277,6 @@ while($reg = mysqli_fetch_assoc($res)) {
 
         </div>
       </form>
-      <?php } } ?>
     </div>
   </body>
 </html>

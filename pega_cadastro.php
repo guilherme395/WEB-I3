@@ -17,18 +17,48 @@ if ($ext == true) {
     move_uploaded_file($path_arquivo["tmp_name"], $caminho_arquivo);
 }
 
-$query = ("INSERT INTO `tb_produto`
-                (`produto`,
-                 `descricao`, 
-                 `preco_custo`, 
-                 `preco_venda`,
-                 `path_arquivo`) 
-            VALUES
-                (:produto,
-                 :descricao,
-                 :preco_custo,
-                 :preco_venda,
-                 :path_arquivo)");
+//Se a $_GET estiver vazio, o if faz o insert do PRODUTO, caso contrario, faz um update no mesmo
+if (empty($_GET)) {
+
+if ( $query = "INSERT INTO 
+                        `tb_produto`
+                    (produto,
+                    descricao, 
+                    preco_custo, 
+                    preco_venda,
+                    path_arquivo) 
+                VALUES
+                    (:produto,
+                      :descricao,
+                      :preco_custo,
+                      :preco_venda,
+                      :path_arquivo)")
+                          
+                    $stmt = $conn->prepare($query);
+
+                    $stmt->bindValue(":produto","$produto");
+                    $stmt->bindValue(":descricao","$descricao");
+                    $stmt->bindValue(":preco_custo","$preco_custo");
+                    $stmt->bindValue(":preco_venda","$preco_venda");
+                    $stmt->bindValue(":path_arquivo","$caminho_arquivo");
+                    
+                    $result = $stmt->execute(); {
+
+                        header("Location: clientes.php?inclusao=1");
+}} else {
+
+$id_update = $_GET['id'];
+
+$query = "UPDATE 
+            tb_produto
+          SET 
+            produto = :produto ,
+            descricao = :descricao ,
+            preco_custo = :preco_custo ,
+            preco_venda = :preco_venda ,
+            path_arquivo = :path_arquivo
+          WHERE
+            id = " . $id_update;
 
 $stmt = $conn->prepare($query);
 
@@ -38,48 +68,11 @@ $stmt->bindValue(":preco_custo","$preco_custo");
 $stmt->bindValue(":preco_venda","$preco_venda");
 $stmt->bindValue(":path_arquivo","$caminho_arquivo");
 
-
 $result = $stmt->execute();
 
-if ($result) {
-    header("Location: loja_i3.php?inclusao=2");
+        if ($result) {
+            header("Location: loja_i3.php?inclusao=2");
+        }
 }
-
-//--------------------------------------------UPDATE------------------------------------------------------//
-
-
-
-if (isset($_GET)) {
-
-    $id_update = $_GET["id"];
-
-    $conn->query("UPDATE
-                        tb_produto 
-                    SET
-                        produto = ':produto' , 
-                        descricao = ':descricao' , 
-                        preco_custo = ':preco_custo' , 
-                        preco_venda = ':preco_venda' ,
-                        path_arquivo = ':path_arquivo'
-                    WHERE
-                        id = " . $id_update);
-                        
-                        $stmt = $conn->prepare($query);
-
-                        $stmt->bindValue(":produto","$produto");
-                        $stmt->bindValue(":descricao","$descricao");
-                        $stmt->bindValue(":preco_custo","$preco_custo");
-                        $stmt->bindValue(":preco_venda","$preco_venda");
-                        $stmt->bindValue(":path_arquivo","$caminho_arquivo");
-
-                        $result = $stmt->execute();
-
-                        {
-
-header("Location: loja_i3.php?inclusao=2");
-    
-    }
-}
-
 
 ?>

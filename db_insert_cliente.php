@@ -17,48 +17,75 @@ $estado = $_POST['estado'];
 //Se a $_GET estiver vazio, o if faz o insert do cliente, caso contrario, faz um update no mesmo
 if (empty($_GET)) {
 
-    var_dump($tipo_pessoa);
+    if ( $query = "INSERT INTO
+                            tb_cliente
+                            (nome, 
+                            tipo_pessoa, 
+                            fantasia, 
+                            cpf_cnpj, 
+                            indereco, 
+                            numero, 
+                            bairro, 
+                            cidade, 
+                            estado)
+                    VALUES
+                            (:nome,
+                             :tipo_pessoa,
+                             :fantasia,
+                             :cpf_cnpj,
+                             :indereco,
+                             :numero,
+                             :bairro,
+                             :cidade,
+                             :estado)")
+                             
+                            $stmt = $conn->prepare($query);
 
-    if ( $query = mysqli_query($conexao , "INSERT INTO
-                                                `tb_cliente` 
-                                                    (`nome`, 
-                                                    `tipo_pessoa`, 
-                                                    `fantasia`, 
-                                                    `cpf_cnpj`, 
-                                                    `indereco`, 
-                                                    `numero`, 
-                                                    `bairro`, 
-                                                    `cidade`, 
-                                                    `estado`)
-                                             VALUES
-                                                    ('{$nome}',
-                                                    '{$tipo_pessoa}',
-                                                    '{$fantasia}',
-                                                    '{$cpf_cnpj}',
-                                                    '{$indereco}',
-                                                    '{$numero}',
-                                                    '{$bairro}',
-                                                    '{$cidade}',
-                                                    '{$estado}')")){
-                                            header("Location: clientes.php?inclusao=1");
+                            $stmt->bindValue(":nome","$nome");
+                            $stmt->bindValue(":tipo_pessoa","$tipo_pessoa");
+                            $stmt->bindValue(":fantasia","$fantasia");
+                            $stmt->bindValue(":cpf_cnpj","$cpf_cnpj");
+                            $stmt->bindValue(":indereco","$indereco");
+                            $stmt->bindValue(":numero","$numero");
+                            $stmt->bindValue(":bairro","$bairro");
+                            $stmt->bindValue(":cidade","$cidade");
+                            $stmt->bindValue(":estado","$estado");
+
+                            $result = $stmt->execute(); {
+
+                            header("Location: clientes.php?inclusao=1");
 }} else {
 
     $id_update = $_GET['id'];
 
-    if ( $query = mysqli_query($conexao , "UPDATE
-                                                tb_produto 
-                                            SET
-                                                nome = '{$nome}' , 
-                                                tipo_pessoa = '{$tipo_pessoa}' , 
-                                                fantasia = '{$fantasia}' , 
-                                                cpf_cnpj = '{$cpf_cnpj}' ,
-                                                indereco = '{$indereco}' ,
-                                                numero = '{$numero}' ,
-                                                bairro = '{$bairro}' ,
-                                                cidade = '{$cidade}' ,
-                                                estado = '{$estado}'
-                                            WHERE
-                                                id = " . $id_update)){
+    if ( $query = "UPDATE
+                        tb_cliente 
+                   SET
+                        nome = :nome , 
+                        tipo_pessoa = :tipo_pessoa , 
+                        fantasia = :fantasia , 
+                        cpf_cnpj = :cpf_cnpj ,
+                        indereco = :indereco ,
+                        numero = :numero ,
+                        bairro = :bairro ,
+                        cidade = :cidade ,
+                        estado = :estado
+                    WHERE
+                        id = " . $id_update)
+                        
+                        $stmt = $conn->prepare($query);
+
+                        $stmt->bindValue(":nome","$nome");
+                        $stmt->bindValue(":tipo_pessoa","$tipo_pessoa");
+                        $stmt->bindValue(":fantasia","$fantasia");
+                        $stmt->bindValue(":cpf_cnpj","$cpf_cnpj");
+                        $stmt->bindValue(":indereco","$indereco");
+                        $stmt->bindValue(":numero","$numero");
+                        $stmt->bindValue(":bairro","$bairro");
+                        $stmt->bindValue(":cidade","$cidade");
+                        $stmt->bindValue(":estado","$estado");
+
+                        $result = $stmt->execute(); {
 
 header("Location: clientes.php?inclusao=2");
     }

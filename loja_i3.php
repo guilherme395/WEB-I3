@@ -2,7 +2,7 @@
 
 include_once "conexao.php";
 
-$sql = $conn->prepare("SELECT * FROM tb_produto");
+$sql = $conn->prepare("SELECT * FROM tb_produto ");
 $sql->execute();
 
 ?>

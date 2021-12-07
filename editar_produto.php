@@ -87,9 +87,7 @@ $sql->execute();
 
             <?php $registros = $sql->fetch(PDO::FETCH_ASSOC) ?>
 
-                  <form  action="pega_cadastro.php?id=<?php echo $id[$i]?>"  method="POST">
-                    
-                    <input type="hidden" name="id" value="id">
+                  <form  action="pega_cadastro.php?id=<?php echo $registros["id"]?>"  method="POST" enctype="multipart/form-data">
                   
                   <div class="form-group">
                     <input value=" <?php echo $registros["produto"]?>"  name="produto" type="text" class="form-control" placeholder="Nome do produto">
@@ -117,6 +115,8 @@ $sql->execute();
                     </div>
 
                   </div>
+
+                  <div >
 
                   <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">Salvar</button>
                 </form>
