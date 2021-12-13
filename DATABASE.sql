@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `tb_cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_cliente` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id_cli` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(120) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `tipo_pessoa` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `fantasia` varchar(120) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `tb_cliente` (
   `bairro` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `cidade` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `estado` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_cli`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -70,7 +70,7 @@ CREATE TABLE `tb_cliente` (
 
 LOCK TABLES `tb_cliente` WRITE;
 /*!40000 ALTER TABLE `tb_cliente` DISABLE KEYS */;
-INSERT INTO `tb_cliente` VALUES (8,' TREVOR PHILIPS   ','F','   I3 SISTEMAS EIRIELI ME              ','   749.531.730-23   ','   LOTE 03              ','   (63)98500-9315       ','   MORADA DO SOL 2      ','   PALMAS               ','   TOCANTINS               '),(10,' MICHAEL DE SANTA ','F',' QUANTUM EIRIELI ME ',' 073.069.141-11 ',' LOTE 03 ',' (63)98500-9315 ',' BELA VISTA  ',' CAMPINAS ',' SÃO PAULO '),(11,'FRANKLIN CLINTON','j','AGUIA NORTE ME','13.058.559/0001-14','LOTE 03','(63)98500-9315','MARIA ROSA ','NATAL','RIO GRADE DO SUL '),(12,'a\\aaaaa','F','','','','','','','');
+INSERT INTO `tb_cliente` VALUES (8,' TREVOR PHILIPS   ','F','   I3 SISTEMAS EIRIELI ME              ','   749.531.730-23   ','   LOTE 03              ','   (63)98500-9315       ','   MORADA DO SOL 2      ','   PALMAS               ','   TOCANTINS               '),(10,' MICHAEL DE SANTA ','F',' QUANTUM EIRIELI ME ',' 073.069.141-11 ',' LOTE 03 ',' (63)98500-9315 ',' BELA VISTA  ',' CAMPINAS ',' SÃO PAULO '),(11,'FRANKLIN CLINTON','j','AGUIA NORTE ME','13.058.559/0001-14','LOTE 03','(63)98500-9315','MARIA ROSA ','NATAL','RIO GRADE DO SUL ');
 /*!40000 ALTER TABLE `tb_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,13 +86,16 @@ CREATE TABLE `tb_itens_pedido` (
   `status_item` int DEFAULT NULL,
   `id_produto` int DEFAULT NULL,
   `quantidade` float(8,2) NOT NULL,
-  `preco_unitario` float(8,2) NOT NULL,
+  `preco_unitario` float(8,2) DEFAULT NULL,
   `desconto` float(8,2) DEFAULT NULL,
   `total` float(8,2) NOT NULL,
+  `id_pedido` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_produto` (`id_produto`),
+  KEY `FK_ID_PEDIDO` (`id_pedido`),
+  CONSTRAINT `FK_ID_PEDIDO` FOREIGN KEY (`id_pedido`) REFERENCES `tb_pedido` (`id`),
   CONSTRAINT `tb_itens_pedido_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `tb_produto` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,6 +104,7 @@ CREATE TABLE `tb_itens_pedido` (
 
 LOCK TABLES `tb_itens_pedido` WRITE;
 /*!40000 ALTER TABLE `tb_itens_pedido` DISABLE KEYS */;
+INSERT INTO `tb_itens_pedido` VALUES (10,0,121,3.00,NULL,NULL,812.58,25);
 /*!40000 ALTER TABLE `tb_itens_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +117,7 @@ DROP TABLE IF EXISTS `tb_pedido`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_pedido` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `data_pedido` datetime NOT NULL,
+  `data_pedido` date NOT NULL,
   `id_cli` int DEFAULT NULL,
   `total_custo` float(8,2) DEFAULT NULL,
   `total_pedido` float(8,2) DEFAULT NULL,
@@ -121,8 +125,8 @@ CREATE TABLE `tb_pedido` (
   `observacao` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_cli` (`id_cli`),
-  CONSTRAINT `tb_pedido_ibfk_1` FOREIGN KEY (`id_cli`) REFERENCES `tb_cliente` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `tb_pedido_ibfk_1` FOREIGN KEY (`id_cli`) REFERENCES `tb_cliente` (`id_cli`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,6 +135,7 @@ CREATE TABLE `tb_pedido` (
 
 LOCK TABLES `tb_pedido` WRITE;
 /*!40000 ALTER TABLE `tb_pedido` DISABLE KEYS */;
+INSERT INTO `tb_pedido` VALUES (25,'2021-12-13',10,NULL,812.58,0,NULL);
 /*!40000 ALTER TABLE `tb_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,11 +150,11 @@ CREATE TABLE `tb_produto` (
   `id` int NOT NULL AUTO_INCREMENT,
   `produto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `descricao` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `preco_custo` float NOT NULL,
-  `preco_venda` float NOT NULL,
+  `preco_custo` float(8,2) NOT NULL,
+  `preco_venda` float(8,2) NOT NULL,
   `path_arquivo` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +163,7 @@ CREATE TABLE `tb_produto` (
 
 LOCK TABLES `tb_produto` WRITE;
 /*!40000 ALTER TABLE `tb_produto` DISABLE KEYS */;
-INSERT INTO `tb_produto` VALUES (114,' ICOMÉRCIO','Solução completa para a gestão do seu negócio! Mais controle interno, gestão financeira e organização contábil em um só sistema!',200,390,'upload/9e72b51a5076a1157da6e21a526807d7.png'),(115,'ICOMÉRCIO LITE','A solução perfeita para pequenos negócios! Emissão de documentos fiscais, gestão de estoque e integração contábil. Conheça a versão Lite!',200,390,'upload/03dbce75f0c69e9d5c529b1f8f249c49.png'),(116,'ICHEF COMANDAS','Otimize gestão e atendimento de bares e restaurantes com uma solução sob medida. Sistema de comanda eletrônica e muito mais!',200,500,'upload/53afcd32d6973b3d527e2e53b98579d4.png');
+INSERT INTO `tb_produto` VALUES (120,'ICOMÉRCIO','Solução completa para a gestão do seu negócio! Mais controle interno, gestão financeira e organização contábil em um só sistema!',250.66,352.00,'upload/952cb089014768caaa65c0c947cabbdc.png'),(121,'  ICOMÉRCIO LITE','A solução perfeita para pequenos negócios! Emissão de documentos fiscais, gestão de estoque e integração contábil. Conheça a versão Lite!',256.80,270.86,'upload/ca234c36e4508bf6c2c770b740b842e0.png'),(122,' ICHEF COMANDAS','Otimize gestão e atendimento de bares e restaurantes com uma solução sob medida. Sistema de comanda eletrônica e muito mais!',130.90,200.96,'upload/c287bbacbfcf8025b86840bfca2a6120.png');
 /*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,4 +209,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-07 18:52:02
+-- Dump completed on 2021-12-13 15:27:33

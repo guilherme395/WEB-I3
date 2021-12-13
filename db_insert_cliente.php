@@ -71,7 +71,7 @@ if (empty($_GET)) {
                         cidade = :cidade ,
                         estado = :estado
                     WHERE
-                        id = " . $id_update)
+                        id_cli = " . $id_update)
                         
                         $stmt = $conn->prepare($query);
 

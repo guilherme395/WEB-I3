@@ -1,8 +1,20 @@
 <?php
 include_once "conexao.php";
 
-$sql = $conn->prepare("SELECT * FROM tb_produto");
-$sql->execute();
+$sql_pedidos = $conn->prepare('SELECT pp.*,c.nome,
+                                (CASE
+                                    WHEN pp.status_pedido = 0 THEN "Gerado"
+                                    WHEN pp.status_pedido = 1 THEN "Fechado"
+                                    WHEN pp.status_pedido = 2 THEN "Cancelado"
+                                    ELSE pp.status_pedido
+                                END) as desc_status
+                                FROM tb_pedido pp 
+                                inner join tb_cliente c on pp.id_cli = c.id_cli');
+$sql_pedidos->execute();
+
+$sql_itens_pedido = $conn->prepare("SELECT pd.* , p.produto FROM tb_itens_pedido pd
+                       inner join tb_produto p on pd.id_produto = p.id");
+$sql_itens_pedido->execute();
 
 ?>
 <!DOCTYPE html>
@@ -66,76 +78,68 @@ $sql->execute();
 <div class="card">
   <div class="card-header">
    <div class="row"> 
-    <h2 class="card-title"> &nbsp Consulta de produto</h2> 
+    <h2 class="card-title"> &nbsp Consulta de Pedidos</h2> 
  </div>    
 
-
     <div class="card-body">
-    
-  
+
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
                 <th scope="col">id</th>
                 <th scope="col">Produto</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Preço de Custo</th>
-                <th scope="col">Preço de Venda</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Data do pedido</th>
+                <th scope="col">Status pedido</th>
+                <th scope="col">Total do pedido</th>
+
                 <th scope="col">Ações</th>
                 </tr>
             </thead>
 
-            <?php while ($registros = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
+            <?php while ($tb_itens_pedido = $sql_itens_pedido->fetch(PDO::FETCH_ASSOC)) { ?><?php while ($tb_pedidos = $sql_pedidos->fetch(PDO::FETCH_ASSOC)) { ?> 
+
+
+<?php  $timeStampData = strtotime($tb_pedidos["data_pedido"]); 
+$data_brasileira = date("d/m/Y" , $timeStampData);?>
 
             <tbody>
 
                 <tr>
                 <th>
-                    <?php echo $registros["id"] ?>
+                    <?php echo $tb_pedidos["id"] ?>
                 </th>
 
                 <td >
-                    <?php echo $registros["produto"] ?>
+                    <?php echo $tb_itens_pedido["produto"] ?>
                 </td>
 
                 <td>
-                    <?php echo $registros["descricao"]?>
+                    <?php echo $tb_pedidos["nome"]?>
                 </td>
 
                 <th >
-                    R$<?php echo number_format($registros["preco_custo"],2,",",".");?>
+                    <?php echo $data_brasileira; ?>
                 </th>
 
                 <th>
-                    R$<?php echo number_format($registros["preco_venda"],2,",",".");?>
-                </th>
-                <th>
-                    <a href="editar_produto.php?id=<?php echo $registros["id"]?>" class="btn btn-info">Editar</a>
+                    <?php echo $tb_pedidos["desc_status"]; ?>
                 </th>
 
                 <th>
-                    <a href="scripts.php?delete=<?php echo $registros["id"]?>" class="btn btn-danger">Excluir</a>
+                    R$<?php echo number_format($tb_pedidos["total_pedido"],2,",",".");?>
+                </th>
+
+                <th>
+                    <a href="scripts.php?atualizar_pedido_para_1=<?php echo $tb_pedidos["id"]?>" class="btn btn-success">Fechar</a>
+                    <a href="scripts.php?atualizar_pedido=<?php echo $tb_pedidos["id"]?>" class="btn btn-danger">Cancelar </a>
                 </th>
                 </tr>
-                
-
             </tbody>
-                    
-            
-
-            <?php } ?>
-
+            <?php } } ?>
         </table>
-
-        <a href="cadastro_produto.php" class="btn btn-primary">Novo Produto</a>
-        <a href="consulta_de_pedidos.php" class="btn btn-primary">Pedidos</a> 
-
-    </div> 
-    
-
+    </div>
  </div>
-
 </div>
-
 </body>
 </html>

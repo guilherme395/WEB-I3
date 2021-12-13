@@ -16,4 +16,29 @@ if (isset($_GET['delete'])) {
     header("Location: produtos.php?delete=2");
 }
 
+if (isset($_GET['atualizar_pedido'])) {
+    $status_pedido = 2;
+    $id = $_GET['atualizar_pedido'];
+    $query = "UPDATE tb_pedido SET status_pedido = :status_pedido WHERE id = '$id'";
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(":status_pedido","$status_pedido");
+    $result = $stmt->execute();
+
+    if ($result) {
+        header("Location: consulta_de_pedidos.php?delete=2");
+    }
+}
+
+if (isset($_GET['atualizar_pedido_para_1'])) {
+    $status_pedido = 1;
+    $id = $_GET['atualizar_pedido_para_1'];
+    $query = "UPDATE tb_pedido SET status_pedido = :status_pedido WHERE id = '$id'";
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(":status_pedido","$status_pedido");
+    $result = $stmt->execute();
+
+    if ($result) {
+        header("Location: loja_i3.php?fechado=2");
+    }
+}
 ?>

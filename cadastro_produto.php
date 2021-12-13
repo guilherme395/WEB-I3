@@ -86,7 +86,7 @@
             </div>
 
             <div class="card-body">
-                  <form  action="pega_cadastro.php"  method="POST" enctype="multipart/form-data" autocomplete = off>
+                  <form  action="pega_cadastro.php"  method="POST" enctype="multipart/form-data" autocomplete = "off">
                 
                   <div class="form-group">
                     <input name="produto" type="text" class="form-control" placeholder="Nome do produto">
@@ -102,7 +102,7 @@
                   </div>
 
                   <div class="form-group">
-                  <input name="preco_venda" type="number" placeholder="Preço de venda" min="0,00" step="0,01" class="form-control">
+                  <input name="preco_venda" type="number" placeholder="Preço de venda" min="0,00" step="0.01" class="form-control">
                   </div>
 
                   <div >

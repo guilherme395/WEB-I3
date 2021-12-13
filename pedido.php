@@ -86,45 +86,45 @@ $query->execute();
               Adicionar ao carrinho
             </div>
 
-            <div class="card-body">
-
-                  <form  action="db_insert_pedido.php?id=<?php echo $_GET["id"]?>"  method="POST">
+            <div class="card-body"> 
 
                   <?php $registros = $sql->fetch(PDO::FETCH_ASSOC) ?>
+
+                  <form action="db_insert_pedido.php?id_produto=<?php echo $registros["id"]?>"  method="POST">
                   
                   <div class="form-group">
-                    <input value=" <?php echo $registros['produto'] ?>" disabled name="produto" type="text" class="form-control" placeholder="Nome do produto">
+                    <input value="<?php echo $registros['produto']?>" disabled name="produto" type="text" class="form-control" placeholder="Nome do produto">
                   </div>
 
                   <div class="form-group">
                     <input value="<?php echo $registros["descricao"]?>" disabled name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
                   </div>
 
-                  <div class="form-group">
-                     <input value="R$ <?php echo $registros["preco_venda"]?>" disabled name="preço_venda" type="text" placeholder="Preço de venda" min="0" step="0.01" class="form-control">
+                  <div  class="form-group">
+                      <input value="<?php echo $registros["preco_venda"]?>" name="preco_venda"  type="number" placeholder="Preço de venda" min="0,00" step="0,01" class="form-control">
                   </div>
 
                   <div class="form-group">
-                     <input name="quantidade" type="number" placeholder="Quantidade" min="0" class="form-control">
+                     <input name="quantidade" type="number" id="quantidade" placeholder="Quantidade" min="0" class="form-control">
                   </div>
 
-                  <select class="form-control">
+                  <select name="id_cli" class="form-control">
 
                   <option selected>Selecionar Cliente</option>
 
                   <?php while ($registros = $query->fetch(PDO::FETCH_ASSOC)){?>
 
-                   <option value="<?php echo $registros["id"]?>"><?php echo $registros["nome"]?></option>
+                   <option  value="<?php echo $registros["id_cli"]?>"><?php echo $registros["nome"]?></option>
 
                   <?php } ?>
 
                   </select>
                   <br>
                   <button name="submit" class="btn btn-lg btn-info btn-block" type="submit">ADICIONAR AO CARRINHO</button>
-                </form>
-            </div>
-          </div>
-        </div>
+              </form>
+           </div>
+         </div>
+      </div>
     </div>
   </body>
 </html>

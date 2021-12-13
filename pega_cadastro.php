@@ -44,7 +44,7 @@ if ( $query = "INSERT INTO
                     
                     $result = $stmt->execute(); {
 
-                        header("Location: clientes.php?inclusao=1");
+                    header("Location: loja_i3.php?inclusao=1");
 }} else {
 
 $id_update = $_GET['id'];
@@ -70,9 +70,9 @@ $stmt->bindValue(":path_arquivo","$caminho_arquivo");
 
 $result = $stmt->execute();
 
-        if ($result) {
-            header("Location: loja_i3.php?inclusao=2");
-        }
+if ($result) {
+    header("Location: loja_i3.php?inclusao=2");
+}
 }
 
 ?>

@@ -98,6 +98,13 @@ $sql->execute();
                   </div>
 
                   <div class="form-group">
+
+                    <input value="<?php echo $registros["preco_custo"]?>" name="preco_custo" type="number" placeholder="Preço de custo" step="0.01" min="0" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                    <input value="<?php echo $registros["preco_venda"]?>" name="preco_venda" type="number" placeholder="Preço de venda" min="0" step="0.01" class="form-control">
+
                     <input value="<?php echo $registros["preco_custo"]?>" name="preco_custo" type="number" placeholder="Preço de custo" min="0" class="form-control">
                   </div>
 

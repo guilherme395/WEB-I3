@@ -85,6 +85,14 @@ $sql->execute();
 
 <?php } ?>
 
+<?php if (isset($_GET['fechado']) && $_GET['fechado'] == 2) { ?>
+  
+  <div class="bg-success pt-2 text-white d-flex justify-content-center">
+    <h5> Produto fechado com secesso, aguarde a entrega !!! </h5>
+  </div> 
+
+<?php } ?>
+
 <div style="padding-top: 20px;"></div>
 
 <div class="container">
@@ -106,7 +114,8 @@ $sql->execute();
                     </div>
                         <p><?php echo $registros["descricao"]?></p>
 
-                        <h4>R$<?php echo $registros["preco_venda"]?></h4>
+                        <h4>R$<?php echo number_format($registros["preco_venda"],2,",",".");  ?></h4>
+
                     <div class="widget-49-meeting-action">
                         <a class="btn btn-success" href="pedido.php?id=<?php echo $registros["id"] ?>">SALVAR NO CARRINHO</a>
                     </div>

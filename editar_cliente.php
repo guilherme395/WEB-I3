@@ -1,7 +1,9 @@
 <?php
 include_once "conexao.php";
 
-$sql = $conn->prepare("SELECT * FROM tb_cliente where id = " . $_GET['id']);
+
+$sql = $conn->prepare("SELECT * FROM tb_cliente where id_cli = " . $_GET['id']);
+
 $sql->execute();
 
 ?>
@@ -232,7 +234,8 @@ $sql->execute();
 <?php $registros = $sql->fetch(PDO::FETCH_ASSOC) ?>
 
     <div class="testbox">
-      <form action="db_insert_cliente.php?id=<?php echo $registros["id"]?> " method="POST" autocomplete = "off">
+
+      <form action="db_insert_cliente.php?id=<?php echo $registros["id_cli"]?> " method="POST" autocomplete = "off">
 
         <div class="banner">
           <h1>Cadastro de cliente </h1>
