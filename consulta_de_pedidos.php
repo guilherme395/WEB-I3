@@ -65,13 +65,6 @@ $sql_itens_pedido->execute();
     </div>
 </nav>
 
-<?php if (isset($_GET['delete']) && $_GET['delete'] == 2) { ?>
-  
-  <div class="bg-danger pt-2 text-white d-flex justify-content-center">
-    <h5> Produto excluido com succeso !!! </h5>
-  </div> 
-
-<?php } ?>
 
 <div class="container spc_br ">
 

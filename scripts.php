@@ -25,7 +25,7 @@ if (isset($_GET['atualizar_pedido'])) {
     $result = $stmt->execute();
 
     if ($result) {
-        header("Location: consulta_de_pedidos.php?delete=2");
+        header("Location: loja_i3.php?delete=2");
     }
 }
 
