@@ -105,7 +105,7 @@ $query->execute();
                   </div>
 
                   <div class="form-group">
-                     <input name="quantidade" type="number" id="quantidade" placeholder="Quantidade" min="0" class="form-control">
+                     <input name="quantidade" min="0"  type="number" id="quantidade" placeholder="Quantidade" min="0" class="form-control">
                   </div>
 
                   <select name="id_cli" class="form-control">

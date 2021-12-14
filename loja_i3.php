@@ -88,7 +88,7 @@ $sql->execute();
 <?php if (isset($_GET['fechado']) && $_GET['fechado'] == 2) { ?>
   
   <div class="bg-success pt-2 text-white d-flex justify-content-center">
-    <h5> Produto fechado com secesso, aguarde a entrega !!! </h5>
+    <h5> Produto fechado com sucesso, aguarde a entrega !!! </h5>
   </div> 
 
 <?php } ?>

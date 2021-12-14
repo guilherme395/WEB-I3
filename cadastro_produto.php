@@ -102,7 +102,7 @@
                   </div>
 
                   <div class="form-group">
-                  <input name="preco_venda" type="number" placeholder="Preço de venda" min="0,00" step="0.01" class="form-control">
+                  <input name="preco_venda" type="number" placeholder="Preço de venda" min="0" step="0.01" class="form-control">
                   </div>
 
                   <div >

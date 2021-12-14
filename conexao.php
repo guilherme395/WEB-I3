@@ -1,6 +1,6 @@
 <?php
 
-$dsn = 'mysql:host=localhost;dbname=login';
+$dsn = 'mysql:host=localhost;dbname=db_loja_virtual_i3';
 $usuario = 'root';
 $senha = 'root';
 

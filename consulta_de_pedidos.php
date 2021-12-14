@@ -80,7 +80,6 @@ $sql_itens_pedido->execute();
             <thead>
                 <tr>
                 <th scope="col">id</th>
-                <th scope="col">Produto</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">Data do pedido</th>
                 <th scope="col">Status pedido</th>
@@ -90,11 +89,13 @@ $sql_itens_pedido->execute();
                 </tr>
             </thead>
 
-            <?php while ($tb_itens_pedido = $sql_itens_pedido->fetch(PDO::FETCH_ASSOC)) { ?><?php while ($tb_pedidos = $sql_pedidos->fetch(PDO::FETCH_ASSOC)) { ?> 
+           <?php while ($tb_pedidos = $sql_pedidos->fetch(PDO::FETCH_ASSOC)) { ?> 
 
 
-<?php  $timeStampData = strtotime($tb_pedidos["data_pedido"]); 
-$data_brasileira = date("d/m/Y" , $timeStampData);?>
+            <?php
+              $timeStampData = strtotime($tb_pedidos["data_pedido"]); 
+              $data_brasileira = date("d/m/Y" , $timeStampData);
+            ?>
 
             <tbody>
 
@@ -102,10 +103,6 @@ $data_brasileira = date("d/m/Y" , $timeStampData);?>
                 <th>
                     <?php echo $tb_pedidos["id"] ?>
                 </th>
-
-                <td >
-                    <?php echo $tb_itens_pedido["produto"] ?>
-                </td>
 
                 <td>
                     <?php echo $tb_pedidos["nome"]?>
@@ -123,13 +120,24 @@ $data_brasileira = date("d/m/Y" , $timeStampData);?>
                     R$<?php echo number_format($tb_pedidos["total_pedido"],2,",",".");?>
                 </th>
 
-                <th>
-                    <a href="scripts.php?atualizar_pedido_para_1=<?php echo $tb_pedidos["id"]?>" class="btn btn-success">Fechar</a>
-                    <a href="scripts.php?atualizar_pedido=<?php echo $tb_pedidos["id"]?>" class="btn btn-danger">Cancelar </a>
+                <th> 
+                    <?php if ($tb_pedidos["status_pedido"] == 0) { ?>
+
+                        <a href="scripts.php?atualizar_pedido_para_1=<?php echo $tb_pedidos["id"]?>" class="btn btn-success">Fechar</a>
+
+                        <a href="scripts.php?atualizar_pedido=<?php echo $tb_pedidos["id"]?>" class="btn btn-danger">Cancelar </a>
+
+                    <?php }else if($tb_pedidos["status_pedido"] == 1){ ?>
+
+                        <a href="scripts.php?atualizar_pedido=<?php echo $tb_pedidos["id"]?>" class="btn btn-danger">Cancelar</a>
+
+                    <?php }else if ($tb_pedidos["status_pedido"] == 2) { ?>
+
+                    <?php } ?>
                 </th>
                 </tr>
             </tbody>
-            <?php } } ?>
+            <?php  } ?>
         </table>
     </div>
  </div>

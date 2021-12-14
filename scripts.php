@@ -4,7 +4,7 @@ include_once "conexao.php";
 
 if (isset($_GET['delete_cli'])) {
     $id = $_GET['delete_cli'];
-    $delete = $conn->prepare("DELETE FROM tb_cliente where id = '$id'");
+    $delete = $conn->prepare("DELETE FROM tb_cliente where id_cli = '$id'");
     $delete->execute();
     header("Location: clientes.php?delete=2");
 }
