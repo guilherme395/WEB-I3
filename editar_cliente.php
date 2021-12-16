@@ -245,32 +245,34 @@ $sql->execute();
           <p>NOME</p>
           <div class="name-item">
 
-            <input value=" <?php echo $registros["nome"]?> " type="text" name="nome" placeholder="NOME DO CLIENTE"/>
-            <input value=" <?php echo $registros["fantasia"]?> " type="text" name="fantasia" placeholder="FANTASIA"/>
+            <input value="<?php echo $registros["nome"]?> " type="text" name="nome" placeholder="NOME DO CLIENTE"/>
+            <input value="<?php echo $registros["fantasia"]?> " type="text" name="fantasia" placeholder="FANTASIA"/>
 
             <select name="tipo_pessoa">
-              <option value=" <?php echo $registros["tipo_pessoa"]?> " name="tipo_pessoa">TIPO DE PESSOA</option>
-              <option value="F">FISICA</option>
-              <option value="j">JURIDICA</option>
+              <option>TIPO DE PESSOA</option>
+
+              <option value="F"<?php if($registros["tipo_pessoa"] = "F") { ?> selected <?php } ?>>FISICA</option>
+              <option value="J"<?php if($registros["tipo_pessoa"] = "J") { ?> selected <?php } ?>>JURIDICA</option>
+
             </select>
             
           </div>
 
         <p>CPF OU CNPJ</p>
-        <input value=" <?php echo $registros["cpf_cnpj"]?> " type="text" name="cpf_cnpj" placeholder="CPF OU CNPJ"/>
+        <input value="<?php echo $registros["cpf_cnpj"]?> " type="text" name="cpf_cnpj" placeholder="CPF OU CNPJ"/>
 
         <div class="item">
           <p>TELEFONE</p>
-          <input value=" <?php echo $registros["numero"]?> " type="text" placeholder="NUMERO PESSOAL" name="numero"/>
+          <input value="<?php echo $registros["numero"]?> " type="text" placeholder="NUMERO PESSOAL" name="numero"/>
         </div>
 
         <div class="item">
 
           <p>ENDEREÇO</p>
-          <input value=" <?php echo $registros["bairro"]?> " type="text" name="bairro" placeholder="BAIRRO" />
-          <input value=" <?php echo $registros["cidade"]?> " type="text" name="cidade" placeholder="CIDADE" />
-          <input value=" <?php echo $registros["estado"]?> " type="text" name="estado" placeholder="ESTADO" />
-          <input value=" <?php echo $registros["indereco"]?> " type="text" name="indereco" placeholder="ADICIONAL" />
+          <input value="<?php echo $registros["bairro"]?> " type="text" name="bairro" placeholder="BAIRRO" />
+          <input value="<?php echo $registros["cidade"]?> " type="text" name="cidade" placeholder="CIDADE" />
+          <input value="<?php echo $registros["estado"]?> " type="text" name="estado" placeholder="ESTADO" />
+          <input value="<?php echo $registros["indereco"]?> " type="text" name="indereco" placeholder="ADICIONAL" />
 
         </div>
 

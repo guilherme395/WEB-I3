@@ -14,7 +14,6 @@ $data_pedido = date('Y/m/d');
 //0 = Gerado , 1 = Finalizado , 2 = cancelado;
 $status_pedido = 0;
 
-
 if ( $query = "INSERT INTO tb_pedido
                         (data_pedido, 
                         id_cli, 

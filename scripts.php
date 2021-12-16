@@ -25,7 +25,7 @@ if (isset($_GET['atualizar_pedido'])) {
     $result = $stmt->execute();
 
     if ($result) {
-        header("Location: loja_i3.php?delete=2");
+        header("Location: consulta_de_pedidos.php?excluido");
     }
 }
 
@@ -38,7 +38,7 @@ if (isset($_GET['atualizar_pedido_para_1'])) {
     $result = $stmt->execute();
 
     if ($result) {
-        header("Location: loja_i3.php?fechado=2");
+        header("Location: consulta_de_pedidos.php?fechado=2");
     }
 }
 ?>

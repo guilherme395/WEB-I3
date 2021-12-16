@@ -54,6 +54,9 @@
         <li class="nav-item">
             <a href="loja_i3.php" class="nav-link ">Home</a>
         </li>
+        <li class="nav-item">
+            <a href="consulta_de_pedidos.php" class="nav-link">Pedidos</a>
+        </li>
         <li class="nav-item lat" >
             <a href="produtos.php" class="nav-link">Produtos</a>
         </li>

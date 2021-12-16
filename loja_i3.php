@@ -85,14 +85,6 @@ $sql->execute();
 
 <?php } ?>
 
-<?php if (isset($_GET['fechado']) && $_GET['fechado'] == 2) { ?>
-  
-  <div class="bg-success pt-2 text-white d-flex justify-content-center">
-    <h5> Produto fechado com sucesso, aguarde a entrega !!! </h5>
-  </div> 
-
-<?php } ?>
-
 <?php if (isset($_GET['delete']) && $_GET['delete'] == 2) { ?>
   
   <div class="bg-danger pt-2 text-white d-flex justify-content-center">
@@ -100,7 +92,6 @@ $sql->execute();
   </div> 
 
 <?php } ?>
-
 
 <div style="padding-top: 20px;"></div>
 
@@ -133,12 +124,10 @@ $sql->execute();
         </div>
     </div>
 
-<?php } ?>
+                <?php } ?>
+                
 
-  </div>
-</div>
-
-
-
+            </div>
+        </div>
     </body>
 </html>

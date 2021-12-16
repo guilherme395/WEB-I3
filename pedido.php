@@ -55,6 +55,9 @@ $query->execute();
         <li class="nav-item">
             <a href="loja_i3.php" class="nav-link ">Home</a>
         </li>
+        <li class="nav-item">
+            <a href="consulta_de_pedidos.php" class="nav-link">Pedidos</a>
+        </li>
         <li class="nav-item lat" >
             <a href="produtos.php" class="nav-link">Produtos</a>
         </li>
@@ -93,28 +96,28 @@ $query->execute();
                   <form action="db_insert_pedido.php?id_produto=<?php echo $registros["id"]?>"  method="POST">
                   
                   <div class="form-group">
-                    <input value="<?php echo $registros['produto']?>" disabled name="produto" type="text" class="form-control" placeholder="Nome do produto">
+                    <input value="<?php echo $registros['produto']?>" readonly name="produto" type="text" class="form-control" placeholder="Nome do produto">
                   </div>
 
                   <div class="form-group">
-                    <input value="<?php echo $registros["descricao"]?>" disabled name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
+                    <input value="<?php echo $registros["descricao"]?>" readonly name="descricao" type="text" class="form-control" placeholder="Descrição do produto">
                   </div>
 
                   <div  class="form-group">
-                      <input value="<?php echo $registros["preco_venda"]?>" name="preco_venda"  type="number" placeholder="Preço de venda" min="0,00" step="0,01" class="form-control">
+                      <input readonly value="<?php echo $registros["preco_venda"]?>" name="preco_venda" type="text"  class="form-control">
                   </div>
 
                   <div class="form-group">
-                     <input name="quantidade" min="0"  type="number" id="quantidade" placeholder="Quantidade" min="0" class="form-control">
+                     <input required name="quantidade" type="number" placeholder="Quantidade" min="1" class="form-control">
                   </div>
 
-                  <select name="id_cli" class="form-control">
+                  <select required name="id_cli" class="form-control">
 
                   <option selected>Selecionar Cliente</option>
 
                   <?php while ($registros = $query->fetch(PDO::FETCH_ASSOC)){?>
 
-                   <option  value="<?php echo $registros["id_cli"]?>"><?php echo $registros["nome"]?></option>
+                   <option required value="<?php echo $registros["id_cli"]?>"><?php echo $registros["nome"]?></option>
 
                   <?php } ?>
 

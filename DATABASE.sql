@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `login` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `login`;
+CREATE DATABASE  IF NOT EXISTS `db_loja_virtual_i3` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `db_loja_virtual_i3`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: login
+-- Host: localhost    Database: db_loja_virtual_i3
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -61,7 +61,7 @@ CREATE TABLE `tb_cliente` (
   `cidade` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `estado` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id_cli`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `tb_cliente` (
 
 LOCK TABLES `tb_cliente` WRITE;
 /*!40000 ALTER TABLE `tb_cliente` DISABLE KEYS */;
-INSERT INTO `tb_cliente` VALUES (8,' TREVOR PHILIPS   ','F','   I3 SISTEMAS EIRIELI ME              ','   749.531.730-23   ','   LOTE 03              ','   (63)98500-9315       ','   MORADA DO SOL 2      ','   PALMAS               ','   TOCANTINS               '),(10,' MICHAEL DE SANTA ','F',' QUANTUM EIRIELI ME ',' 073.069.141-11 ',' LOTE 03 ',' (63)98500-9315 ',' BELA VISTA  ',' CAMPINAS ',' SÃO PAULO '),(11,'FRANKLIN CLINTON','j','AGUIA NORTE ME','13.058.559/0001-14','LOTE 03','(63)98500-9315','MARIA ROSA ','NATAL','RIO GRADE DO SUL ');
+INSERT INTO `tb_cliente` VALUES (8,' TREVOR PHILIPS   ','F','   I3 SISTEMAS EIRIELI ME              ','   749.531.730-23   ','   LOTE 03              ','   (63)98500-9315       ','   MORADA DO SOL 2      ','   PALMAS               ','   TOCANTINS               '),(10,' MICHAEL DE SANTA ','F',' QUANTUM EIRIELI ME ',' 073.069.141-11 ',' LOTE 03 ',' (63)98500-9315 ',' BELA VISTA  ',' CAMPINAS ',' SÃO PAULO '),(11,'FRANKLIN CLINTON','j','AGUIA NORTE ME','13.058.559/0001-14','LOTE 03','(63)98500-9315','MARIA ROSA ','NATAL','RIO GRADE DO SUL '),(13,'Ari   ','J','   ','052172161616   ','sdfsdf   ','   ','sddfdf   ','csdfdfsd   ','tosdfsdf   ');
 /*!40000 ALTER TABLE `tb_cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,8 +86,6 @@ CREATE TABLE `tb_itens_pedido` (
   `status_item` int DEFAULT NULL,
   `id_produto` int DEFAULT NULL,
   `quantidade` float(8,2) NOT NULL,
-  `preco_unitario` float(8,2) DEFAULT NULL,
-  `desconto` float(8,2) DEFAULT NULL,
   `total` float(8,2) NOT NULL,
   `id_pedido` int DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -95,7 +93,7 @@ CREATE TABLE `tb_itens_pedido` (
   KEY `FK_ID_PEDIDO` (`id_pedido`),
   CONSTRAINT `FK_ID_PEDIDO` FOREIGN KEY (`id_pedido`) REFERENCES `tb_pedido` (`id`),
   CONSTRAINT `tb_itens_pedido_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `tb_produto` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +102,6 @@ CREATE TABLE `tb_itens_pedido` (
 
 LOCK TABLES `tb_itens_pedido` WRITE;
 /*!40000 ALTER TABLE `tb_itens_pedido` DISABLE KEYS */;
-INSERT INTO `tb_itens_pedido` VALUES (10,0,121,3.00,NULL,NULL,812.58,25);
 /*!40000 ALTER TABLE `tb_itens_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,14 +116,12 @@ CREATE TABLE `tb_pedido` (
   `id` int NOT NULL AUTO_INCREMENT,
   `data_pedido` date NOT NULL,
   `id_cli` int DEFAULT NULL,
-  `total_custo` float(8,2) DEFAULT NULL,
   `total_pedido` float(8,2) DEFAULT NULL,
   `status_pedido` int DEFAULT NULL,
-  `observacao` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_cli` (`id_cli`),
   CONSTRAINT `tb_pedido_ibfk_1` FOREIGN KEY (`id_cli`) REFERENCES `tb_cliente` (`id_cli`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +130,6 @@ CREATE TABLE `tb_pedido` (
 
 LOCK TABLES `tb_pedido` WRITE;
 /*!40000 ALTER TABLE `tb_pedido` DISABLE KEYS */;
-INSERT INTO `tb_pedido` VALUES (25,'2021-12-13',10,NULL,812.58,0,NULL);
 /*!40000 ALTER TABLE `tb_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +148,7 @@ CREATE TABLE `tb_produto` (
   `preco_venda` float(8,2) NOT NULL,
   `path_arquivo` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +157,7 @@ CREATE TABLE `tb_produto` (
 
 LOCK TABLES `tb_produto` WRITE;
 /*!40000 ALTER TABLE `tb_produto` DISABLE KEYS */;
-INSERT INTO `tb_produto` VALUES (120,'ICOMÉRCIO','Solução completa para a gestão do seu negócio! Mais controle interno, gestão financeira e organização contábil em um só sistema!',250.66,352.00,'upload/952cb089014768caaa65c0c947cabbdc.png'),(121,'  ICOMÉRCIO LITE','A solução perfeita para pequenos negócios! Emissão de documentos fiscais, gestão de estoque e integração contábil. Conheça a versão Lite!',256.80,270.86,'upload/ca234c36e4508bf6c2c770b740b842e0.png'),(122,' ICHEF COMANDAS','Otimize gestão e atendimento de bares e restaurantes com uma solução sob medida. Sistema de comanda eletrônica e muito mais!',130.90,200.96,'upload/c287bbacbfcf8025b86840bfca2a6120.png');
+INSERT INTO `tb_produto` VALUES (131,'Asus NVIDIA Geforce RTX 3090','Esta edição limitada da ROG Strix GeForce RTX 3090 apresenta uma cor completamente branca em cima de todas as melhorias geracionais para a série ROG Strix.',15000.00,23000.00,'upload/959b3d139ad46126d191c7064be4c07f.jpg'),(132,' Teclado Mecânico Gamer T-Dagger','O T-Dagger Bora RGB traz tudo que um teclado mecânico deve ter: um RGB encantador, Switches de confiança, teclas que não desgastam e um prazer de uso absoluto!  Inclui iluminação RGB',450.90,850.90,'upload/4e48e446f0aa650e6215e6f963427235.jpg'),(133,'   Mouse Gamer RGB Alienware','Precisão Refinada com Controle de Sensibilidade de 5000 DPI. O Frete é Grátis! Sistema de Iluminação RGB com Efeitos Dinâmicos de Acordo com o Jogo. Confira! Linha Gamer - G Series. Frete Grátis.',220.60,500.90,'upload/ac8483795ab5fabf61f9e5a004b49540.jpg');
 /*!40000 ALTER TABLE `tb_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,11 +187,11 @@ INSERT INTO `usuario` VALUES (1,'guilhermell@live.com','12e086066892a311b752673a
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'login'
+-- Dumping events for database 'db_loja_virtual_i3'
 --
 
 --
--- Dumping routines for database 'login'
+-- Dumping routines for database 'db_loja_virtual_i3'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -209,4 +203,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-13 15:27:33
+-- Dump completed on 2021-12-16 15:09:10

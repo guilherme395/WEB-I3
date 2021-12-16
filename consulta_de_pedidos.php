@@ -52,6 +52,9 @@ $sql_itens_pedido->execute();
         <li class="nav-item">
             <a href="loja_i3.php" class="nav-link ">Home</a>
         </li>
+        <li class="nav-item">
+            <a href="consulta_de_pedidos.php" class="nav-link">Pedidos</a>
+        </li>
         <li class="nav-item lat" >
             <a href="produtos.php" class="nav-link">Produtos</a>
         </li>
@@ -65,6 +68,21 @@ $sql_itens_pedido->execute();
     </div>
 </nav>
 
+<?php if (isset($_GET['fechado']) && $_GET['fechado'] == 2) { ?>
+  
+  <div class="bg-success pt-2 text-white d-flex justify-content-center">
+    <h5> Produto fechado com sucesso, aguarde a entrega !!! </h5>
+  </div> 
+
+<?php } ?>
+
+<?php if (isset($_GET['excluido'])) { ?>
+  
+  <div class="bg-danger pt-2 text-white d-flex justify-content-center">
+    <h5> Produto cancelado com succeso !!! </h5>
+  </div> 
+
+<?php } ?>
 
 <div class="container spc_br ">
 
@@ -132,7 +150,7 @@ $sql_itens_pedido->execute();
                         <a href="scripts.php?atualizar_pedido=<?php echo $tb_pedidos["id"]?>" class="btn btn-danger">Cancelar</a>
 
                     <?php }else if ($tb_pedidos["status_pedido"] == 2) { ?>
-
+                        
                     <?php } ?>
                 </th>
                 </tr>
